@@ -1,6 +1,6 @@
 /* ==========================================================
    TRADING JOURNAL PRO
-   Script v0.1
+   Script v0.2
 ========================================================== */
 
 const App = {
@@ -13,21 +13,21 @@ const App = {
 
     init() {
 
-    this.storage.load();
+        this.storage.load();
 
-    this.clock.start();
+        this.clock.start();
 
-    this.form.events();
+        this.form.events();
 
-    this.refresh();
+        this.refresh();
 
-},
+    },
 
-refresh() {
+    refresh() {
 
-    this.history.render();
+        this.history.render();
 
-},
+    },
 
     /* ====================================================== */
 
@@ -61,6 +61,36 @@ refresh() {
 
     /* ====================================================== */
 
+    trade: {
+
+        add(trade) {
+
+            App.state.trades.push(trade);
+
+            App.storage.save();
+
+            App.refresh();
+
+        },
+
+        remove(id) {
+
+            App.state.trades = App.state.trades.filter(
+
+                trade => trade.id !== id
+
+            );
+
+            App.storage.save();
+
+            App.refresh();
+
+        }
+
+    },
+
+    /* ====================================================== */
+
     clock: {
 
         start() {
@@ -84,9 +114,11 @@ refresh() {
             const time = now.toLocaleTimeString("pt-BR");
 
             const dateEl = document.getElementById("currentDate");
+
             const timeEl = document.getElementById("currentTime");
 
             if (dateEl) dateEl.textContent = date;
+
             if (timeEl) timeEl.textContent = time;
 
         }
@@ -145,13 +177,9 @@ refresh() {
 
             }
 
-            App.state.trades.push(trade);
+            App.trade.add(trade);
 
-App.storage.save();
-
-App.refresh();
-
-document.getElementById("tradeForm").reset();
+            document.getElementById("tradeForm").reset();
 
         }
 
@@ -161,20 +189,24 @@ document.getElementById("tradeForm").reset();
 
     history: {
 
-    render() {
+        render() {
 
-        const tbody = document.getElementById("historyTable");
+            const tbody = document.getElementById("historyTable");
 
             tbody.innerHTML = "";
 
             App.state.trades
+
                 .sort((a, b) => new Date(b.date) - new Date(a.date))
+
                 .forEach(trade => {
 
                     const tr = document.createElement("tr");
 
                     const color = trade.result >= 0
+
                         ? "positive"
+
                         : "negative";
 
                     tr.innerHTML = `
@@ -188,7 +220,9 @@ document.getElementById("tradeForm").reset();
                         <td>${trade.setup}</td>
 
                         <td class="${color}">
+
                             $ ${trade.result.toFixed(2)}
+
                         </td>
 
                         <td>
@@ -213,11 +247,7 @@ document.getElementById("tradeForm").reset();
 
             if (!confirm("Excluir este trade?")) return;
 
-            App.state.trades = App.state.trades.filter(t => t.id !== id);
-
-App.storage.save();
-
-App.refresh();
+            App.trade.remove(id);
 
         }
 
@@ -232,4 +262,3 @@ document.addEventListener("DOMContentLoaded", () => {
     App.init();
 
 });
-
