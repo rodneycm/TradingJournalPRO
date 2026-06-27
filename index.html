@@ -2,6 +2,7 @@
 <html lang="pt-BR">
 
 <head>
+
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
@@ -9,116 +10,310 @@
 
     <link rel="stylesheet" href="style.css">
 
-    <!-- Google Fonts -->
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 
-    <!-- Chart.js -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
 </head>
 
 <body>
 
-    <div class="dashboard">
+<div class="container">
 
-        <!-- ========================= -->
-        <!-- HEADER -->
-        <!-- ========================= -->
-        <header class="header">
+    <!-- ================= HEADER ================= -->
 
-            <div class="logo-area">
-                <h1>Trading Journal Pro</h1>
-                <span>Performance Dashboard</span>
+    <header>
+
+        <div class="logo">
+
+            <h1>Trading Journal Pro</h1>
+
+            <span>Performance Dashboard</span>
+
+        </div>
+
+        <div class="header-info">
+
+            <div id="currentDate">00/00/0000</div>
+
+            <div id="currentTime">00:00:00</div>
+
+        </div>
+
+    </header>
+
+    <!-- ================= KPIs ================= -->
+
+    <section class="kpi-grid">
+
+        <div class="card">
+            <h3>PNL Hoje</h3>
+            <span id="kpiToday">$0.00</span>
+        </div>
+
+        <div class="card">
+            <h3>PNL Semana</h3>
+            <span id="kpiWeek">$0.00</span>
+        </div>
+
+        <div class="card">
+            <h3>PNL Mês</h3>
+            <span id="kpiMonth">$0.00</span>
+        </div>
+
+        <div class="card">
+            <h3>PNL Total</h3>
+            <span id="kpiTotal">$0.00</span>
+        </div>
+
+        <div class="card">
+            <h3>Win Rate</h3>
+            <span id="kpiWin">0%</span>
+        </div>
+
+        <div class="card">
+            <h3>Payoff</h3>
+            <span id="kpiPayoff">0</span>
+        </div>
+
+        <div class="card">
+            <h3>Profit Factor</h3>
+            <span id="kpiPF">0</span>
+        </div>
+
+        <div class="card">
+            <h3>Drawdown</h3>
+            <span id="kpiDD">$0</span>
+        </div>
+
+    </section>
+
+    <!-- ================= CALENDÁRIO ================= -->
+
+    <section class="calendar-section">
+
+        <div class="panel">
+
+            <div class="panel-header">
+
+                <button id="prevMonth">◀</button>
+
+                <h2 id="monthLabel">Julho 2026</h2>
+
+                <button id="nextMonth">▶</button>
+
             </div>
 
-            <div class="header-info">
+            <div class="weekdays">
 
-                <div class="info-box">
-                    <label>Data</label>
-                    <span id="currentDate">--/--/----</span>
-                </div>
-
-                <div class="info-box">
-                    <label>Hora</label>
-                    <span id="currentTime">00:00</span>
-                </div>
+                <span>Dom</span>
+                <span>Seg</span>
+                <span>Ter</span>
+                <span>Qua</span>
+                <span>Qui</span>
+                <span>Sex</span>
+                <span>Sáb</span>
 
             </div>
 
-        </header>
+            <div id="calendar"></div>
 
-        <!-- ========================= -->
-        <!-- KPIs -->
-        <!-- ========================= -->
+        </div>
 
-        <section id="kpi-section">
+        <!-- ================= RESUMO ================= -->
 
-        </section>
+        <div class="panel">
 
-        <!-- ========================= -->
-        <!-- CONTEÚDO PRINCIPAL -->
-        <!-- ========================= -->
+            <h2>Resumo Mensal</h2>
 
-        <main class="main-grid">
+            <div class="summary">
 
-            <!-- Coluna Esquerda -->
+                <div><label>Dias Positivos</label><strong id="positiveDays">0</strong></div>
 
-            <section class="left-column">
+                <div><label>Dias Negativos</label><strong id="negativeDays">0</strong></div>
 
-                <!-- Resumo Mensal -->
+                <div><label>Dias OFF</label><strong id="offDays">0</strong></div>
 
-                <section id="monthly-summary"></section>
+                <div><label>Trades</label><strong id="tradeCount">0</strong></div>
 
-                <!-- Calendário -->
+                <div><label>Maior Gain</label><strong id="bestDay">$0</strong></div>
 
-                <section id="calendar-widget"></section>
+                <div><label>Maior Loss</label><strong id="worstDay">$0</strong></div>
 
-                <!-- Curva de Capital -->
+            </div>
 
-                <section id="capital-chart-widget"></section>
+        </div>
 
-                <!-- Performance -->
+    </section>
 
-                <section id="performance-chart-widget"></section>
+<section class="info-grid">
 
-                <!-- Histórico -->
+    <!-- ================= CURVA ================= -->
 
-                <section id="history-widget"></section>
+    <section class="panel">
 
-            </section>
+        <div class="panel-header">
 
-            <!-- Coluna Direita -->
+            <h2>Curva de Capital</h2>
 
-            <aside class="right-column">
+        </div>
 
-                <!-- Novo Trade -->
+        <canvas id="capitalChart"></canvas>
 
-                <section id="trade-form-widget"></section>
+    </section>
 
-                <!-- Coach -->
+    <!-- ================= PERFORMANCE ================= -->
 
-                <section id="coach-widget"></section>
+    <section class="panel">
 
-                <!-- Prop Firm -->
+        <div class="panel-header">
 
-                <section id="propfirm-widget"></section>
+            <h2>Performance</h2>
 
-            </aside>
+            <select id="performanceFilter">
 
-        </main>
+                <option>Capital</option>
 
-        <!-- ========================= -->
-        <!-- RODAPÉ -->
-        <!-- ========================= -->
+                <option>Win Rate</option>
 
-        <footer>
+                <option>Payoff</option>
 
-            Trading Journal Pro © 2026
+                <option>Profit Factor</option>
 
-        </footer>
+                <option>Drawdown</option>
 
-    </div>
+            </select>
 
-    <script src="script.js"></script>
+        </div>
+
+        <canvas id="performanceChart"></canvas>
+
+    </section>
+
+    <!-- ================= FORMULÁRIO ================= -->
+
+        <div class="panel">
+
+            <h2>Novo Trade</h2>
+
+            <form id="tradeForm">
+
+                <input type="date" id="tradeDate">
+
+                <select id="account">
+                    <option>Topstep</option>
+                    <option>Apex</option>
+                    <option>Take Profit</option>
+                    <option>Outro</option>
+                </select>
+
+                <input type="text" id="market" placeholder="Mercado">
+
+                <input type="text" id="asset" placeholder="Ativo">
+
+                <input type="text" id="setup" placeholder="Setup">
+
+                <select id="side">
+                    <option>Compra</option>
+                    <option>Venda</option>
+                </select>
+
+                <input type="number" id="contracts" placeholder="Contratos">
+
+                <input type="number" id="result" placeholder="Resultado ($)">
+
+                <textarea id="notes" placeholder="Observações"></textarea>
+
+                <button type="submit" id="saveTrade">
+                    Salvar Trade
+                </button>
+
+            </form>
+
+        </div>
+
+    </section>
+
+        <!-- ================= COACH ================= -->
+
+        <div class="panel">
+
+            <h2>Coach</h2>
+
+            <div id="coach">
+
+                Aguardando dados...
+
+            </div>
+
+        </div>
+
+    </section>
+
+    <!-- ================= HISTÓRICO ================= -->
+
+    <section class="panel">
+
+        <h2>Histórico</h2>
+
+        <table>
+
+            <thead>
+
+            <tr>
+
+                <th>Data</th>
+
+                <th>Conta</th>
+
+                <th>Ativo</th>
+
+                <th>Setup</th>
+
+                <th>Resultado</th>
+
+                <th>Ações</th>
+
+            </tr>
+
+            </thead>
+
+            <tbody id="historyTable">
+
+            </tbody>
+
+        </table>
+
+    </section>
+
+    <!-- ================= PROP ================= -->
+
+    <section class="panel">
+
+        <h2>Prop Firm</h2>
+
+        <div class="summary">
+
+            <div><label>Meta</label><strong id="goal">$0</strong></div>
+
+            <div><label>Trailing DD</label><strong id="trailing">$0</strong></div>
+
+            <div><label>Buffer</label><strong id="buffer">$0</strong></div>
+
+            <div><label>Dias Operados</label><strong id="days">0</strong></div>
+
+            <div><label>Status</label><strong id="status">Aguardando</strong></div>
+
+        </div>
+
+    </section>
+
+</div>
+
+<script src="script.js"></script>
 
 </body>
 

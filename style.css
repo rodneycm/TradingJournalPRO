@@ -1,0 +1,644 @@
+/* ======================================================
+   TRADING JOURNAL PRO
+   Theme Dark v1.0
+====================================================== */
+
+:root{
+
+    --bg:#0f1117;
+    --panel:#171b24;
+    --panel2:#1d2330;
+
+    --border:#2b3444;
+
+    --text:#f2f5fa;
+    --text2:#b4bcc9;
+
+    --green:#16c784;
+    --red:#ea3943;
+    --blue:#3b82f6;
+    --yellow:#facc15;
+
+    --radius:12px;
+
+    --shadow:0 10px 30px rgba(0,0,0,.35);
+
+}
+
+*{
+
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+
+}
+
+html{
+
+    scroll-behavior:smooth;
+
+}
+
+body{
+
+    background:var(--bg);
+
+    color:var(--text);
+
+    font-family:'Inter',sans-serif;
+
+    min-height:100vh;
+
+}
+
+/*======================================================*/
+
+.container{
+
+    width:min(1600px,95%);
+
+    margin:auto;
+
+    padding:25px;
+
+}
+
+/*======================================================*/
+
+header{
+
+    display:flex;
+
+    justify-content:space-between;
+
+    align-items:center;
+
+    margin-bottom:25px;
+
+}
+
+.logo h1{
+
+    font-size:32px;
+
+    font-weight:700;
+
+}
+
+.logo span{
+
+    color:var(--text2);
+
+    font-size:14px;
+
+}
+
+.header-info{
+
+    display:flex;
+
+    gap:20px;
+
+    color:var(--text2);
+
+    font-size:15px;
+
+}
+
+/*======================================================*/
+
+.kpi-grid{
+
+    display:grid;
+
+    grid-template-columns:repeat(8,1fr);
+
+    gap:18px;
+
+    margin-bottom:25px;
+
+}
+
+/*======================================================*/
+
+.card{
+
+    background:var(--panel);
+
+    border:1px solid var(--border);
+
+    border-radius:var(--radius);
+
+    padding:16px;
+
+    box-shadow:var(--shadow);
+
+    transition:.25s;
+
+}
+
+.card:hover{
+
+    transform:translateY(-3px);
+
+    border-color:var(--blue);
+
+}
+
+.card h3{
+
+    color:var(--text2);
+
+    font-size:14px;
+
+    margin-bottom:15px;
+
+    font-weight:500;
+
+}
+
+.card span{
+
+    font-size:22px;
+
+    font-weight:700;
+
+}
+
+/*======================================================*/
+
+.panel{
+
+    background:var(--panel);
+
+    border:1px solid var(--border);
+
+    border-radius:var(--radius);
+
+    padding:28px;
+
+    box-shadow:var(--shadow);
+
+    margin-bottom:25px;
+
+}
+
+.panel h2{
+
+    font-size:20px;
+
+    margin-bottom:18px;
+
+}
+
+/*======================================================*/
+
+.calendar-section{
+
+    display:block;
+
+}
+
+.info-grid{
+
+    display:grid;
+
+    grid-template-columns:1fr 1fr;
+
+    gap:25px;
+
+    margin:25px 0;
+
+}
+
+/*======================================================*/
+
+.panel-header{
+
+    display:flex;
+
+    justify-content:space-between;
+
+    align-items:center;
+
+    margin-bottom:20px;
+
+}
+
+.panel-header button{
+
+    background:var(--blue);
+
+    color:white;
+
+    border:none;
+
+    width:36px;
+
+    height:36px;
+
+    border-radius:8px;
+
+    cursor:pointer;
+
+    transition:.2s;
+
+}
+
+.panel-header button:hover{
+
+    opacity:.8;
+
+}
+
+.panel-header select{
+
+    background:var(--panel2);
+
+    color:white;
+
+    border:1px solid var(--border);
+
+    border-radius:8px;
+
+    padding:10px;
+
+}
+
+/*======================================================*/
+
+.weekdays{
+
+    display:grid;
+
+    grid-template-columns:repeat(7,1fr);
+
+    gap:10px;
+
+    margin-bottom:10px;
+
+    text-align:center;
+
+    color:var(--text2);
+
+    font-size:13px;
+
+}
+
+#calendar{
+
+    display:grid;
+
+    grid-template-columns:repeat(7,1fr);
+
+    gap:14px;
+
+}
+
+.day{
+
+    background:var(--panel2);
+
+    border:1px solid var(--border);
+
+    border-radius:10px;
+
+    min-height:95px;
+
+    padding:10px;
+
+    cursor:pointer;
+
+    transition:.2s;
+
+}
+
+.day:hover{
+
+    border-color:var(--blue);
+
+    transform:translateY(-2px);
+
+}
+
+.day-number{
+
+    font-size:14px;
+
+    font-weight:700;
+
+}
+
+.day-result{
+
+    margin-top:12px;
+
+    font-size:18px;
+
+    font-weight:700;
+
+}
+
+.day-trades{
+
+    margin-top:8px;
+
+    color:var(--text2);
+
+    font-size:12px;
+
+}
+
+.day.green{
+
+    border-left:4px solid var(--green);
+
+}
+
+.day.red{
+
+    border-left:4px solid var(--red);
+
+}
+
+.day.off{
+
+    opacity:.5;
+
+}
+
+/*======================================================*/
+
+.summary{
+
+    display:grid;
+
+    grid-template-columns:repeat(2,1fr);
+
+    gap:18px;
+
+}
+
+.summary div{
+
+    background:var(--panel2);
+
+    padding:18px;
+
+    border-radius:10px;
+
+}
+
+.summary label{
+
+    display:block;
+
+    color:var(--text2);
+
+    margin-bottom:10px;
+
+}
+
+.summary strong{
+
+    font-size:24px;
+
+}
+
+/*======================================================*/
+
+canvas{
+
+    width:100% !important;
+
+    height:430px !important;
+
+}
+
+/*======================================================*/
+
+form{
+
+    display:flex;
+
+    flex-direction:column;
+
+    gap:15px;
+
+}
+
+input,
+select,
+textarea{
+
+    background:var(--panel2);
+
+    border:1px solid var(--border);
+
+    border-radius:10px;
+
+    padding:14px;
+
+    color:white;
+
+    font-size:15px;
+
+}
+
+textarea{
+
+    min-height:120px;
+
+    resize:vertical;
+
+}
+
+input:focus,
+select:focus,
+textarea:focus{
+
+    outline:none;
+
+    border-color:var(--blue);
+
+}
+
+/*======================================================*/
+
+button{
+
+    background:var(--blue);
+
+    color:white;
+
+    border:none;
+
+    border-radius:10px;
+
+    padding:14px;
+
+    cursor:pointer;
+
+    font-weight:600;
+
+    transition:.2s;
+
+}
+
+button:hover{
+
+    opacity:.85;
+
+}
+
+/*======================================================*/
+
+table{
+
+    width:100%;
+
+    border-collapse:collapse;
+
+}
+
+thead{
+
+    background:var(--panel2);
+
+}
+
+th{
+
+    text-align:left;
+
+    padding:15px;
+
+    color:var(--text2);
+
+}
+
+td{
+
+    padding:15px;
+
+    border-top:1px solid var(--border);
+
+}
+
+tbody tr{
+
+    transition:.2s;
+
+}
+
+tbody tr:hover{
+
+    background:rgba(255,255,255,.03);
+
+}
+
+/*======================================================*/
+
+.positive{
+
+    color:var(--green);
+
+}
+
+.negative{
+
+    color:var(--red);
+
+}
+
+.warning{
+
+    color:var(--yellow);
+
+}
+
+/*======================================================*/
+
+@media(max-width:1400px){
+
+.kpi-grid{
+
+grid-template-columns:repeat(4,1fr);
+
+}
+
+}
+
+@media(max-width:900px){
+
+.content-grid{
+
+grid-template-columns:1fr;
+
+}
+
+.bottom-grid{
+
+grid-template-columns:1fr;
+
+}
+
+.kpi-grid{
+
+grid-template-columns:repeat(2,1fr);
+
+}
+
+header{
+
+flex-direction:column;
+
+align-items:flex-start;
+
+gap:20px;
+
+}
+
+.summary{
+
+grid-template-columns:1fr;
+
+}
+
+}
+
+@media(max-width:600px){
+
+.kpi-grid{
+
+grid-template-columns:1fr;
+
+}
+
+#calendar{
+
+gap:5px;
+
+}
+
+.day{
+
+    min-height:130px;
+
+padding:6px;
+
+}
+
+.card span{
+
+font-size:22px;
+
+}
+
+.logo h1{
+
+font-size:24px;
+
+}
+
+}

@@ -1,69 +1,106 @@
-# TRADING JOURNAL PRO
+TRADING JOURNAL PRO
+Blueprint v2.0
 
-## Project Blueprint v1.0
+Autor: Miriam Rodrigues + ChatGPT
 
----
+Objetivo: Construir um Dashboard de Performance Profissional para Traders de Mercado Futuro Americano e Prop Firms.
 
-# 1. Visão do Projeto
+1. MISSÃO
 
-O **Trading Journal Pro** é um Dashboard de Performance para Traders.
+Criar um Dashboard único, rápido e extremamente organizado que concentre todas as informações importantes sobre a performance do trader em uma única tela.
 
-Seu objetivo não é gerar sinais de entrada, indicar operações ou acompanhar o mercado em tempo real.
+O sistema não executa operações.
 
-O objetivo do sistema é reunir, em uma única tela, todas as informações necessárias para que o trader analise sua evolução operacional, financeira e comportamental de forma rápida, organizada e intuitiva.
+O sistema não gera sinais.
 
-Todo o projeto será desenvolvido pensando em simplicidade, velocidade e facilidade de uso.
+O sistema não analisa mercado.
 
-O sistema deverá abrir diretamente no navegador e apresentar todas as informações sem necessidade de navegar entre páginas.
+O sistema apenas organiza e apresenta informações para análise da performance operacional.
 
----
+2. FILOSOFIA
 
-# 2. Filosofia do Projeto
+O projeto deve seguir cinco princípios.
 
-O sistema não é um site.
+Simples
 
-O sistema não é um CRUD.
+Abrir.
 
-O sistema não é um ERP.
+Lançar.
 
-O sistema é um **Terminal de Performance**.
+Consultar.
 
-Ao abrir a aplicação o usuário deve enxergar imediatamente toda sua situação operacional.
+Nada além disso.
 
-Cada informação exibida deve responder uma pergunta importante sobre sua performance.
+Rápido
 
-O foco nunca será apenas lucro.
+Cadastrar um trade deve levar menos de 20 segundos.
 
-O foco será compreender como esse lucro foi construído.
+Consultar qualquer informação deve levar menos de 5 segundos.
 
----
+Visual
 
-# 3. Objetivo Principal
+Quase todas as informações importantes devem aparecer em gráficos, indicadores ou cores.
 
-Criar um Dashboard único capaz de concentrar todas as informações importantes do trader em uma única página.
+Pouco texto.
 
-Ao abrir o sistema o usuário deverá visualizar:
+Muita leitura visual.
 
-* Resultado financeiro.
-* Performance.
-* Evolução.
-* Consistência.
-* Drawdown.
-* Histórico.
-* Curva de Capital.
-* Calendário mensal.
-* Indicadores comportamentais.
-* Estatísticas dos setups.
+Objetivo
 
-Sem trocar de página.
+Cada informação exibida deve responder uma pergunta.
 
----
+Exemplos:
 
-# 4. Estrutura do Projeto
+Quanto ganhei hoje?
 
-O projeto permanecerá extremamente simples.
+Qual meu melhor setup?
 
-```text
+Qual conta performou melhor?
+
+Quanto falta para atingir a meta?
+
+Como está minha curva?
+
+Tudo em uma página
+
+Nunca haverá:
+
+segunda página
+menu lateral
+telas escondidas
+abas complexas
+
+Todo o sistema ficará em uma única tela com rolagem vertical.
+
+3. TECNOLOGIAS
+
+Apenas:
+
+HTML
+
+CSS
+
+JavaScript
+
+Chart.js
+
+LocalStorage
+
+Nada mais.
+
+Sem backend.
+
+Sem banco SQL.
+
+Sem React.
+
+Sem Vue.
+
+Sem Bootstrap.
+
+Sem Tailwind.
+
+4. ESTRUTURA DO PROJETO
 TradingJournal/
 
 index.html
@@ -71,65 +108,58 @@ index.html
 style.css
 
 script.js
-```
 
-Nenhum framework será utilizado.
+blueprint.md
 
-Não haverá React.
+Apenas quatro arquivos.
 
-Não haverá Angular.
+5. LAYOUT
 
-Não haverá Vue.
+A página será composta nesta ordem.
 
-Não haverá backend.
+HEADER
 
-Não haverá banco de dados.
+↓
 
-Todos os dados serão armazenados utilizando LocalStorage.
+KPIs
 
----
+↓
 
-# 5. Tecnologias
+Resumo Mensal
 
-HTML5
+↓
 
-CSS3
+Calendário
 
-JavaScript Vanilla
+↓
 
-Chart.js (via CDN)
+Curva de Capital
 
-LocalStorage
+↓
 
-Nada além disso.
+Performance
 
----
+↓
 
-# 6. Layout
+Cadastro Trade
 
-Todo o sistema funcionará em uma única página.
+↓
 
-A estrutura será composta pelos seguintes blocos:
+Coach
 
-1. Cabeçalho
-2. Cards principais
-3. Calendário mensal
-4. Gráfico Curva de Capital
-5. Gráfico de Performance
-6. Formulário Novo Trade
-7. Histórico
-8. Coach
-9. Rodapé
+↓
 
-Todos os blocos permanecerão visíveis na mesma página.
+Histórico
 
----
+↓
 
-# 7. Cabeçalho
+Prop Firm
 
-O cabeçalho conterá:
+Sempre nessa sequência.
 
-Logo
+6. HEADER
+
+Deve conter:
 
 Nome do sistema
 
@@ -137,17 +167,21 @@ Data
 
 Hora
 
----
+Botão Exportar Backup
 
-# 8. Cards Principais
+Botão Importar Backup
 
-Serão exibidos sempre no topo.
+Nada mais.
 
-Indicadores:
+7. KPIs
+
+Sempre visíveis.
+
+Serão:
 
 Health Score
 
-FTAR Score
+FTAR
 
 PNL Hoje
 
@@ -163,83 +197,81 @@ Payoff
 
 Profit Factor
 
-Drawdown Diário
-
-Drawdown Máximo
+Drawdown
 
 Meta
 
-Status da Prop Firm
+Status Prop Firm
 
-Melhor Trade
+Esses KPIs nunca terão edição manual.
 
-Pior Trade
+Serão sempre calculados.
+
+8. RESUMO MENSAL
+
+Mostrar:
+
+Dias positivos
+
+Dias negativos
+
+Dias OFF
+
+Resultado acumulado
+
+Maior Gain
+
+Maior Loss
 
 Quantidade de Trades
 
-Todos os indicadores deverão atualizar automaticamente.
+9. CALENDÁRIO
 
----
+Este será o coração do sistema.
 
-# 9. Calendário Mensal
+Cada dia mostrará:
 
-Este será um dos principais componentes do Dashboard.
+15
 
-Cada dia do mês será exibido em formato de calendário.
++$420
 
-Exemplo:
+3 Trades
 
-01
+ou
 
-+$250
+15
 
-02
+-$180
 
--$120
+2 Trades
 
-03
+ou
 
-+$90
-
-04
+15
 
 OFF
 
-Cada célula do calendário mostrará o resultado financeiro daquele dia.
-
 Cores:
 
-Verde
+🟢 lucro
 
-Dia positivo.
+🔴 prejuízo
 
-Vermelho
+⚪ OFF
 
-Dia negativo.
+Ao clicar em um dia:
 
-Cinza
+Seleciona aquele dia.
 
-Sem operações.
+Atualiza o dashboard.
 
-Ao clicar em um dia o sistema deverá:
+Abre o formulário já preenchido.
 
-Filtrar os trades.
+10. CURVA DE CAPITAL
 
-Atualizar os gráficos.
+Sempre mostrará a evolução financeira.
 
-Atualizar os indicadores.
-
-Mostrar apenas os dados daquela sessão.
-
----
-
-# 10. Curva de Capital
-
-Gráfico principal.
-
-Representará toda evolução financeira.
-
-Possuirá filtros:
+Filtros:
 
 Diário
 
@@ -247,43 +279,43 @@ Semanal
 
 Mensal
 
-O usuário poderá alternar entre os períodos sem sair da página.
+Anual
 
----
+11. PERFORMANCE
 
-# 11. Gráfico de Performance
+Um único gráfico.
 
-Além da curva financeira existirá um segundo gráfico.
+Com seletor.
 
-Esse gráfico poderá mostrar:
+Exemplo:
 
-Health Score
+Capital
 
 Win Rate
 
+Health
+
+Payoff
+
+Profit Factor
+
 Drawdown
 
-Performance por Setup
+Setup
 
-Performance por Conta
+Conta
 
-Performance por Ativo
+O gráfico muda conforme a seleção.
 
-Performance por Período
+12. CADASTRO DE TRADE
 
-A escolha será feita através de um seletor.
-
----
-
-# 12. Cadastro de Trade
-
-O cadastro deverá ser extremamente rápido.
-
-Campos:
+Campos mínimos:
 
 Data
 
 Conta
+
+Mercado
 
 Ativo
 
@@ -291,25 +323,23 @@ Setup
 
 Compra/Venda
 
+Contratos
+
 Resultado $
 
 Resultado Pontos
 
-R:R
+Resultado R
 
 Observação
 
 Botão Salvar
 
-Após salvar:
+Nada além disso.
 
-Todo Dashboard será atualizado automaticamente.
+13. HISTÓRICO
 
----
-
-# 13. Histórico
-
-Tabela contendo todas as operações.
+Tabela.
 
 Colunas:
 
@@ -317,200 +347,150 @@ Data
 
 Conta
 
-Ativo
+Mercado
 
 Setup
 
 Resultado
 
-R:R
-
 Editar
 
 Excluir
 
-Filtros por:
+Filtros:
 
 Data
 
 Conta
 
+Mercado
+
 Setup
 
-Ativo
+14. COACH
 
----
+Nunca dará sinais.
 
-# 14. Health Score
+Apenas mostrará estatísticas.
 
-Representará a qualidade operacional do trader.
+Exemplo:
 
-Será calculado automaticamente.
+Maior lucro ocorreu no setup ORB.
 
-Escala:
+Seu Win Rate aumentou.
 
-0 até 100
+Seu melhor dia continua sendo terça-feira.
 
-Verde
+Seu maior drawdown foi em junho.
 
-Amarelo
+15. PROP FIRM
 
-Vermelho
+Mostrar apenas informações importantes.
 
-Seu objetivo é mostrar a evolução comportamental ao longo do tempo.
+Exemplo:
 
----
+Meta
 
-# 15. FTAR Score
+Trailing Drawdown
 
-Cada operação poderá receber uma pontuação baseada no plano operacional.
+Dias Operados
 
-Essa pontuação permitirá gerar estatísticas sobre:
+Dias Restantes
 
-Qual setup gera maior lucro.
+Consistência
 
-Qual setup possui maior consistência.
+Status
 
-Qual setup apresenta melhor expectativa.
+16. LOCAL STORAGE
 
----
+Todos os dados ficarão apenas no navegador.
 
-# 16. Coach
+Não haverá login.
 
-Área responsável por apresentar mensagens automáticas.
+17. BACKUP
 
-Exemplos:
+Botão:
 
-Maior lucro foi utilizando o setup PERM.
+Exportar JSON
 
-Seu Win Rate aumentou esta semana.
+Importar JSON
 
-Seu Drawdown diminuiu.
+Assim você nunca perde seus dados.
 
-Seu melhor dia foi terça-feira.
-
-Seu melhor horário continua entre 9h30 e 11h.
-
-O Coach apenas apresenta informações.
-
-Ele não gera sinais de entrada.
-
----
-
-# 17. Atualização Automática
-
-Sempre que um trade for salvo o sistema atualizará automaticamente:
-
-KPIs
-
-Calendário
-
-Gráficos
-
-Histórico
-
-Health Score
-
-FTAR
-
-Coach
-
-Sem necessidade de recarregar a página.
-
----
-
-# 18. Design
+18. DESIGN
 
 Tema escuro.
 
-Visual moderno.
+Visual inspirado em Bloomberg Terminal, TradingView e painéis profissionais.
 
-Inspirado em terminais profissionais.
+Muito espaço.
 
-Muito espaço entre elementos.
+Poucas cores.
 
-Cartões organizados.
+Verde somente para lucro.
 
-Interface limpa.
+Vermelho somente para prejuízo.
 
-Todas as informações visíveis sem necessidade de navegar entre páginas.
+Azul para ações.
 
----
+Cinza para informações neutras.
 
-# 19. Objetivo Final
+19. REGRAS DE DESENVOLVIMENTO
 
-Ao abrir o Trading Journal Pro, o usuário deve encontrar um painel completo contendo toda sua performance em uma única tela.
+Nunca escrever código duplicado.
 
-O sistema deverá permitir compreender rapidamente:
+Cada função deve ter apenas uma responsabilidade.
 
-Como está sua evolução financeira.
+Nome das funções em português.
 
-Como está sua consistência.
+Comentários apenas quando realmente necessários.
 
-Qual setup apresenta melhor desempenho.
+Código simples.
 
-Qual conta está performando melhor.
+Código legível.
 
-Como está sua curva de capital.
+20. ROADMAP
+Sprint 1 (MVP)
+Estrutura HTML
+Layout CSS
+Calendário
+Cadastro
+LocalStorage
+Histórico
+KPIs básicos
 
-Qual foi o resultado diário.
+Objetivo: sistema utilizável.
 
-Qual foi o resultado semanal.
+Sprint 2
+Gráficos
+Resumo Mensal
+Filtros
+Estatísticas
 
-Qual foi o resultado mensal.
+Objetivo: análise completa.
 
-Como está seu Health Score.
+Sprint 3
+Health Score
+FTAR
+Coach
+Prop Firm
+Backup JSON
 
-Como está seu FTAR.
+Objetivo: versão 1.0.
 
-Tudo isso sem trocar de página.
+21. O QUE NÃO FAREMOS
 
----
+Para manter o projeto simples e concluí-lo rapidamente, ficam fora da versão 1.0:
 
-# 20. Roadmap de Desenvolvimento
+❌ Login de usuários
+❌ Banco de dados
+❌ Backend
+❌ API de corretoras
+❌ Atualização em tempo real
+❌ Integração com plataformas de trading
+❌ Inteligência artificial
+❌ Sistema multiusuário
+❌ Várias páginas
+❌ Frameworks JavaScript
 
-## Fase 1 — Estrutura
-
-* Layout completo
-* Tema escuro
-* Cards
-* Calendário mensal
-* Gráficos
-* Formulário
-* Histórico
-
-## Fase 2 — Funcionalidade
-
-* LocalStorage
-* Cadastro de trades
-* Atualização automática
-* KPIs
-* Filtros
-* Calendário dinâmico
-
-## Fase 3 — Inteligência
-
-* Health Score
-* FTAR Score
-* Coach
-* Estatísticas
-* Comparativos
-* Relatórios
-
----
-
-# 21. Princípios do Projeto
-
-Toda nova funcionalidade deverá respeitar estes princípios:
-
-* Apenas uma página.
-* Interface limpa e organizada.
-* Informações objetivas.
-* Sem excesso de cliques.
-* Cadastro rápido.
-* Visual profissional.
-* Dados atualizados automaticamente.
-* Performance acima de complexidade.
-* Código simples, legível e fácil de manter.
-
-Qualquer nova funcionalidade deverá fortalecer esses princípios, nunca afastar o projeto de sua proposta original.
+Esses itens só serão considerados em versões futuras, se realmente fizerem sentido.
