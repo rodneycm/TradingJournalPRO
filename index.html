@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Trading Journal Pro</title>
+
+    <link rel="stylesheet" href="style.css">
+
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+    <!-- Chart.js -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+
+<body>
+
+    <div class="dashboard">
+
+        <!-- ========================= -->
+        <!-- HEADER -->
+        <!-- ========================= -->
+        <header class="header">
+
+            <div class="logo-area">
+                <h1>Trading Journal Pro</h1>
+                <span>Performance Dashboard</span>
+            </div>
+
+            <div class="header-info">
+
+                <div class="info-box">
+                    <label>Data</label>
+                    <span id="currentDate">--/--/----</span>
+                </div>
+
+                <div class="info-box">
+                    <label>Hora</label>
+                    <span id="currentTime">00:00</span>
+                </div>
+
+            </div>
+
+        </header>
+
+        <!-- ========================= -->
+        <!-- KPIs -->
+        <!-- ========================= -->
+
+        <section id="kpi-section">
+
+        </section>
+
+        <!-- ========================= -->
+        <!-- CONTEÚDO PRINCIPAL -->
+        <!-- ========================= -->
+
+        <main class="main-grid">
+
+            <!-- Coluna Esquerda -->
+
+            <section class="left-column">
+
+                <!-- Resumo Mensal -->
+
+                <section id="monthly-summary"></section>
+
+                <!-- Calendário -->
+
+                <section id="calendar-widget"></section>
+
+                <!-- Curva de Capital -->
+
+                <section id="capital-chart-widget"></section>
+
+                <!-- Performance -->
+
+                <section id="performance-chart-widget"></section>
+
+                <!-- Histórico -->
+
+                <section id="history-widget"></section>
+
+            </section>
+
+            <!-- Coluna Direita -->
+
+            <aside class="right-column">
+
+                <!-- Novo Trade -->
+
+                <section id="trade-form-widget"></section>
+
+                <!-- Coach -->
+
+                <section id="coach-widget"></section>
+
+                <!-- Prop Firm -->
+
+                <section id="propfirm-widget"></section>
+
+            </aside>
+
+        </main>
+
+        <!-- ========================= -->
+        <!-- RODAPÉ -->
+        <!-- ========================= -->
+
+        <footer>
+
+            Trading Journal Pro © 2026
+
+        </footer>
+
+    </div>
+
+    <script src="script.js"></script>
+
+</body>
+
+</html>
