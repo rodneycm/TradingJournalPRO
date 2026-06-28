@@ -4,16 +4,18 @@
 <head>
 
     <meta charset="UTF-8">
+
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
     <title>Trading Journal Pro</title>
 
+    <meta name="description" content="Trading Journal Pro">
+
+    <!-- CSS -->
+
     <link rel="stylesheet" href="style.css">
 
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <!-- Chart.js -->
 
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 
@@ -21,264 +23,385 @@
 
 <body>
 
-<div class="container">
+    <!-- =======================================================
+        HEADER
+    ======================================================== -->
 
-    <!-- ================= HEADER ================= -->
+    <header class="header">
 
-    <header>
-
-        <div class="logo">
+        <div>
 
             <h1>Trading Journal Pro</h1>
 
-            <span>Performance Dashboard</span>
+            <p>Performance Dashboard</p>
 
         </div>
 
-        <div class="header-info">
+        <div class="header-clock">
 
-            <div id="currentDate">00/00/0000</div>
+            <span id="currentDate">--/--/----</span>
 
-            <div id="currentTime">00:00:00</div>
+            <span id="currentTime">00:00:00</span>
 
         </div>
 
     </header>
 
-    <!-- ================= KPIs ================= -->
+    <!-- =======================================================
+        KPIs
+    ======================================================== -->
 
     <section class="kpi-grid">
 
-        <div class="card">
-            <h3>PNL Hoje</h3>
-            <span id="kpiToday">$0.00</span>
-        </div>
+        <article class="card">
 
-        <div class="card">
-            <h3>PNL Semana</h3>
-            <span id="kpiWeek">$0.00</span>
-        </div>
+            <span>PNL Hoje</span>
 
-        <div class="card">
-            <h3>PNL Mês</h3>
-            <span id="kpiMonth">$0.00</span>
-        </div>
+            <strong id="kpiToday">$0.00</strong>
 
-        <div class="card">
-            <h3>PNL Total</h3>
-            <span id="kpiTotal">$0.00</span>
-        </div>
+        </article>
 
-        <div class="card">
-            <h3>Win Rate</h3>
-            <span id="kpiWin">0%</span>
-        </div>
+        <article class="card">
 
-        <div class="card">
-            <h3>Payoff</h3>
-            <span id="kpiPayoff">0</span>
-        </div>
+            <span>PNL Semana</span>
 
-        <div class="card">
-            <h3>Profit Factor</h3>
-            <span id="kpiPF">0</span>
-        </div>
+            <strong id="kpiWeek">$0.00</strong>
 
-        <div class="card">
-            <h3>Drawdown</h3>
-            <span id="kpiDD">$0</span>
-        </div>
+        </article>
+
+        <article class="card">
+
+            <span>PNL Mês</span>
+
+            <strong id="kpiMonth">$0.00</strong>
+
+        </article>
+
+        <article class="card">
+
+            <span>PNL Total</span>
+
+            <strong id="kpiTotal">$0.00</strong>
+
+        </article>
+
+        <article class="card">
+
+            <span>Win Rate</span>
+
+            <strong id="kpiWinRate">0%</strong>
+
+        </article>
+
+        <article class="card">
+
+            <span>Payoff</span>
+
+            <strong id="kpiPayoff">0</strong>
+
+        </article>
+
+        <article class="card">
+
+            <span>Profit Factor</span>
+
+            <strong id="kpiProfitFactor">0</strong>
+
+        </article>
+
+        <article class="card">
+
+            <span>Drawdown</span>
+
+            <strong id="kpiDrawdown">$0.00</strong>
+
+        </article>
 
     </section>
 
-    <!-- ================= CALENDÁRIO ================= -->
+    <!-- =======================================================
+        CALENDÁRIO
+    ======================================================== -->
 
-    <section class="calendar-section">
+    <section class="calendar-wrapper">
 
-        <div class="panel">
+        <section class="panel">
 
             <div class="panel-header">
 
-                <button id="prevMonth">◀</button>
+                <button id="prevMonth">
 
-                <h2 id="monthLabel">Julho 2026</h2>
+                    ◀
 
-                <button id="nextMonth">▶</button>
+                </button>
+
+                <h2 id="monthLabel">
+
+                    Janeiro 2026
+
+                </h2>
+
+                <button id="nextMonth">
+
+                    ▶
+
+                </button>
 
             </div>
 
             <div class="weekdays">
 
                 <span>Dom</span>
+
                 <span>Seg</span>
+
                 <span>Ter</span>
+
                 <span>Qua</span>
+
                 <span>Qui</span>
+
                 <span>Sex</span>
+
                 <span>Sáb</span>
 
             </div>
 
             <div id="calendar"></div>
 
-        </div>
+        </section>
 
-        <!-- ================= RESUMO ================= -->
+        <!-- =======================================================
+            RESUMO MENSAL
+        ======================================================== -->
 
-        <div class="panel">
+        <section class="panel">
 
-            <h2>Resumo Mensal</h2>
+            <h2>
 
-            <div class="summary">
+                Resumo Mensal
 
-                <div><label>Dias Positivos</label><strong id="positiveDays">0</strong></div>
+            </h2>
 
-                <div><label>Dias Negativos</label><strong id="negativeDays">0</strong></div>
+            <div class="summary-grid">
 
-                <div><label>Dias OFF</label><strong id="offDays">0</strong></div>
+                <div>
 
-                <div><label>Trades</label><strong id="tradeCount">0</strong></div>
+                    <span>Dias Positivos</span>
 
-                <div><label>Maior Gain</label><strong id="bestDay">$0</strong></div>
+                    <strong id="positiveDays">0</strong>
 
-                <div><label>Maior Loss</label><strong id="worstDay">$0</strong></div>
+                </div>
+
+                <div>
+
+                    <span>Dias Negativos</span>
+
+                    <strong id="negativeDays">0</strong>
+
+                </div>
+
+                <div>
+
+                    <span>Dias OFF</span>
+
+                    <strong id="offDays">0</strong>
+
+                </div>
+
+                <div>
+
+                    <span>Trades</span>
+
+                    <strong id="tradeCount">0</strong>
+
+                </div>
+
+                <div>
+
+                    <span>Maior Gain</span>
+
+                    <strong id="bestDay">$0.00</strong>
+
+                </div>
+
+                <div>
+
+                    <span>Maior Loss</span>
+
+                    <strong id="worstDay">$0.00</strong>
+
+                </div>
 
             </div>
 
-        </div>
+        </section>
 
     </section>
 
-<section class="info-grid">
+    <!-- =======================================================
+        GRÁFICOS
+    ======================================================== -->
 
-    <!-- ================= CURVA ================= -->
+    <section class="chart-grid">
 
-    <section class="panel">
+        <section class="panel">
 
-        <div class="panel-header">
+            <div class="panel-header">
 
-            <h2>Curva de Capital</h2>
+                <h2>
 
-        </div>
+                    Curva de Capital
 
-        <canvas id="capitalChart"></canvas>
+                </h2>
+
+            </div>
+
+            <canvas id="capitalChart"></canvas>
+
+        </section>
+
+        <section class="panel">
+
+            <div class="panel-header">
+
+                <h2>
+
+                    Performance
+
+                </h2>
+
+                <select id="performanceFilter">
+
+                    <option>Capital</option>
+
+                    <option>Win Rate</option>
+
+                    <option>Payoff</option>
+
+                    <option>Profit Factor</option>
+
+                    <option>Drawdown</option>
+
+                </select>
+
+            </div>
+
+            <canvas id="performanceChart"></canvas>
+
+        </section>
 
     </section>
 
-    <!-- ================= PERFORMANCE ================= -->
+    <!-- =======================================================
+        FORMULÁRIO
+    ======================================================== -->
 
     <section class="panel">
 
-        <div class="panel-header">
+        <h2>
 
-            <h2>Performance</h2>
+            Novo Trade
 
-            <select id="performanceFilter">
+        </h2>
 
-                <option>Capital</option>
+        <form id="tradeForm">
 
-                <option>Win Rate</option>
+            <input type="date" id="tradeDate">
 
-                <option>Payoff</option>
+            <select id="account">
 
-                <option>Profit Factor</option>
+                <option>Topstep</option>
 
-                <option>Drawdown</option>
+                <option>Apex</option>
+
+                <option>Take Profit</option>
+
+                <option>Outro</option>
 
             </select>
 
-        </div>
+            <input type="text" id="market" placeholder="Mercado">
 
-        <canvas id="performanceChart"></canvas>
+            <input type="text" id="asset" placeholder="Ativo">
 
-    </section>
+            <input type="text" id="setup" placeholder="Setup">
 
-    <!-- ================= FORMULÁRIO ================= -->
+            <select id="side">
 
-        <div class="panel">
+                <option>Compra</option>
 
-            <h2>Novo Trade</h2>
+                <option>Venda</option>
 
-            <form id="tradeForm">
+            </select>
 
-                <input type="date" id="tradeDate">
+            <input type="number" id="contracts" placeholder="Contratos">
 
-                <select id="account">
-                    <option>Topstep</option>
-                    <option>Bulenox</option>
-                    <option>Apex</option>
-                    <option>Take Profit</option>
-                    <option>Outro</option>
-                </select>
+            <input type="number" id="result" placeholder="Resultado">
 
-                <input type="text" id="market" placeholder="Mercado">
+            <textarea id="notes" placeholder="Observações"></textarea>
 
-                <input type="text" id="asset" placeholder="Ativo">
+            <button type="submit">
 
-                <input type="text" id="setup" placeholder="Setup">
+                Salvar Trade
 
-                <select id="side">
-                    <option>Compra</option>
-                    <option>Venda</option>
-                </select>
+            </button>
 
-                <input type="number" id="contracts" placeholder="Contratos">
-
-                <input type="number" id="result" placeholder="Resultado ($)">
-
-                <textarea id="notes" placeholder="Observações"></textarea>
-
-                <button type="submit" id="saveTrade">
-                    Salvar Trade
-                </button>
-
-            </form>
-
-        </div>
+        </form>
 
     </section>
 
-        <!-- ================= COACH ================= -->
-
-        <div class="panel">
-
-            <h2>Coach</h2>
-
-            <div id="coach">
-
-                Aguardando dados...
-
-            </div>
-
-        </div>
-
-    </section>
-
-    <!-- ================= HISTÓRICO ================= -->
+    <!-- =======================================================
+        COACH
+    ======================================================== -->
 
     <section class="panel">
 
-        <h2>Histórico</h2>
+        <h2>
+
+            Coach
+
+        </h2>
+
+        <div id="coachPanel">
+
+            Nenhuma recomendação disponível.
+
+        </div>
+
+    </section>
+
+    <!-- =======================================================
+        HISTÓRICO
+    ======================================================== -->
+
+    <section class="panel">
+
+        <h2>
+
+            Histórico
+
+        </h2>
 
         <table>
 
             <thead>
 
-            <tr>
+                <tr>
 
-                <th>Data</th>
+                    <th>Data</th>
 
-                <th>Conta</th>
+                    <th>Conta</th>
 
-                <th>Ativo</th>
+                    <th>Ativo</th>
 
-                <th>Setup</th>
+                    <th>Setup</th>
 
-                <th>Resultado</th>
+                    <th>Resultado</th>
 
-                <th>Ações</th>
+                    <th>Ações</th>
 
-            </tr>
+                </tr>
 
             </thead>
 
@@ -290,31 +413,29 @@
 
     </section>
 
-    <!-- ================= PROP ================= -->
+    <!-- =======================================================
+        PROP FIRM
+    ======================================================== -->
 
     <section class="panel">
 
-        <h2>Prop Firm</h2>
+        <h2>
 
-        <div class="summary">
+            Prop Firm
 
-            <div><label>Meta</label><strong id="goal">$0</strong></div>
+        </h2>
 
-            <div><label>Trailing DD</label><strong id="trailing">$0</strong></div>
+        <div id="propFirmPanel">
 
-            <div><label>Buffer</label><strong id="buffer">$0</strong></div>
-
-            <div><label>Dias Operados</label><strong id="days">0</strong></div>
-
-            <div><label>Status</label><strong id="status">Aguardando</strong></div>
+            Nenhuma conta cadastrada.
 
         </div>
 
     </section>
 
-</div>
+    <!-- JavaScript -->
 
-<script src="script.js"></script>
+    <script type="module" src="./js/app.js"></script>
 
 </body>
 

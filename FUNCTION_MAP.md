@@ -1,0 +1,9 @@
+| Módulo   | Função       | Status |
+| -------- | ------------ | ------ |
+| Trade    | add()        | ✅      |
+| Trade    | remove()     | ✅      |
+| Trade    | edit()       | ⬜      |
+| Trade    | getWinRate() | ⬜      |
+| Calendar | render()     | ⬜      |
+| KPI      | render()     | ⬜      |
+| Coach    | render()     | ⬜      |
