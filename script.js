@@ -7,9 +7,17 @@ const App = {
 
     state: {
 
-        trades: []
+    trades: [],
 
-    },
+    selectedDate: null,
+
+    currentMonth: new Date().getMonth(),
+
+    currentYear: new Date().getFullYear(),
+
+    performanceView: "Capital"
+
+},
 
     init() {
 
@@ -185,7 +193,9 @@ const App = {
 
     },
 
-    /* ====================================================== */
+        /* ======================================================
+       HISTORY
+    ====================================================== */
 
     history: {
 
@@ -195,7 +205,20 @@ const App = {
 
             tbody.innerHTML = "";
 
-            App.state.trades
+            let trades = [...App.state.trades];
+
+            // Futuramente filtrará pelo calendário
+            if (App.state.selectedDate) {
+
+                trades = trades.filter(
+
+                    trade => trade.date === App.state.selectedDate
+
+                );
+
+            }
+
+            trades
 
                 .sort((a, b) => new Date(b.date) - new Date(a.date))
 
@@ -251,10 +274,57 @@ const App = {
 
         }
 
+    },
+
+    /* ======================================================
+       CALENDAR
+    ====================================================== */
+
+    calendar: {
+
+        init() {
+
+        },
+
+        render() {
+
+        },
+
+        renderHeader() {
+
+        },
+
+        renderDays() {
+
+        },
+
+        nextMonth() {
+
+        },
+
+        prevMonth() {
+
+        },
+
+        selectDay(date) {
+
+        },
+
+        events() {
+
+        }
+
     }
 
 };
 
+document.addEventListener("DOMContentLoaded", () => {
+
+    App.init();
+
+});
+
+    
 /* ========================================================== */
 
 document.addEventListener("DOMContentLoaded", () => {
