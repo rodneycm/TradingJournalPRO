@@ -1,0 +1,148 @@
+/* ==========================================================
+   TRADING JOURNAL PRO
+   CHARTS.CSS
+========================================================== */
+
+/* ==========================================================
+   PAINEL DOS GRÁFICOS
+========================================================== */
+
+.chart-container{
+
+    position:relative;
+
+    width:100%;
+
+    min-height:340px;
+
+}
+
+/* ==========================================================
+   CANVAS
+========================================================== */
+
+canvas{
+
+    width:100% !important;
+
+    height:340px !important;
+
+}
+
+/* ==========================================================
+   CABEÇALHO DOS GRÁFICOS
+========================================================== */
+
+.chart-header{
+
+    display:flex;
+
+    justify-content:space-between;
+
+    align-items:center;
+
+    margin-bottom:20px;
+
+}
+
+/* ==========================================================
+   TÍTULO
+========================================================== */
+
+.chart-header h2{
+
+    margin:0;
+
+}
+
+/* ==========================================================
+   FILTRO
+========================================================== */
+
+.chart-header select{
+
+    width:180px;
+
+}
+
+/* ==========================================================
+   PLACEHOLDER
+========================================================== */
+
+.chart-placeholder{
+
+    height:340px;
+
+    display:flex;
+
+    justify-content:center;
+
+    align-items:center;
+
+    color:var(--text-muted);
+
+    border:1px dashed var(--border);
+
+    border-radius:12px;
+
+    background:var(--card-2);
+
+    font-size:15px;
+
+}
+
+/* ==========================================================
+   LEGENDA FUTURA
+========================================================== */
+
+.chart-legend{
+
+    display:flex;
+
+    gap:20px;
+
+    margin-top:15px;
+
+}
+
+.chart-legend span{
+
+    display:flex;
+
+    align-items:center;
+
+    gap:8px;
+
+    font-size:13px;
+
+    color:var(--text-muted);
+
+}
+
+.chart-dot{
+
+    width:12px;
+
+    height:12px;
+
+    border-radius:50%;
+
+}
+
+.chart-dot.green{
+
+    background:var(--green);
+
+}
+
+.chart-dot.red{
+
+    background:var(--red);
+
+}
+
+.chart-dot.blue{
+
+    background:var(--blue);
+
+}

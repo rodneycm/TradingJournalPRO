@@ -1,0 +1,156 @@
+/* ==========================================================
+   TRADING JOURNAL PRO
+   RESPONSIVE.CSS
+========================================================== */
+
+/* ==========================================================
+   NOTEBOOK
+========================================================== */
+
+@media (max-width:1200px){
+
+    .dashboard{
+
+        grid-template-columns:1fr;
+
+    }
+
+}
+
+/* ==========================================================
+   TABLET
+========================================================== */
+
+@media (max-width:900px){
+
+    .kpi-grid{
+
+        grid-template-columns:repeat(2,1fr);
+
+    }
+
+    .calendar-section{
+
+        grid-template-columns:1fr;
+
+    }
+
+    .info-grid{
+
+        grid-template-columns:1fr;
+
+    }
+
+    #tradeForm{
+
+        grid-template-columns:1fr;
+
+    }
+
+    #tradeForm textarea{
+
+        grid-column:auto;
+
+    }
+
+    #tradeForm button{
+
+        grid-column:auto;
+
+    }
+
+}
+
+/* ==========================================================
+   CELULAR
+========================================================== */
+
+@media (max-width:600px){
+
+    body{
+
+        padding:12px;
+
+    }
+
+    header{
+
+        flex-direction:column;
+
+        align-items:flex-start;
+
+        gap:12px;
+
+    }
+
+    .panel-header{
+
+        flex-direction:column;
+
+        align-items:flex-start;
+
+        gap:10px;
+
+    }
+
+    .kpi-grid{
+
+        grid-template-columns:1fr;
+
+    }
+
+    #calendar{
+
+        gap:4px;
+
+        grid-auto-rows:80px;
+
+    }
+
+    .calendar-day{
+
+        padding:6px;
+
+    }
+
+    .day-number{
+
+        font-size:13px;
+
+    }
+
+    .day-result{
+
+        font-size:12px;
+
+    }
+
+    .day-count{
+
+        font-size:10px;
+
+    }
+
+    table{
+
+        display:block;
+
+        overflow-x:auto;
+
+    }
+
+}
+
+/* ==========================================================
+   TELAS MUITO GRANDES
+========================================================== */
+
+@media (min-width:1600px){
+
+    .container{
+
+        max-width:1600px;
+
+    }
+
+}

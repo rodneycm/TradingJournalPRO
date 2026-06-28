@@ -1,0 +1,220 @@
+/* ==========================================================
+   TRADING JOURNAL PRO
+   CALENDAR.CSS
+========================================================== */
+
+/* ==========================================================
+   CABEÇALHO DOS DIAS DA SEMANA
+========================================================== */
+
+.weekdays{
+
+    display:grid;
+
+    grid-template-columns:repeat(7,1fr);
+
+    gap:8px;
+
+    margin-bottom:10px;
+
+}
+
+.weekdays span{
+
+    text-align:center;
+
+    font-size:13px;
+
+    color:var(--text-muted);
+
+    font-weight:600;
+
+    padding:10px 0;
+
+}
+
+/* ==========================================================
+   GRADE DO CALENDÁRIO
+========================================================== */
+
+#calendar{
+
+    display:grid;
+
+    grid-template-columns:repeat(7,1fr);
+
+    grid-auto-rows:95px;
+
+    gap:8px;
+
+}
+
+/* ==========================================================
+   ESPAÇOS VAZIOS
+========================================================== */
+
+.calendar-empty{
+
+    background:transparent;
+
+}
+
+/* ==========================================================
+   DIA
+========================================================== */
+
+.calendar-day{
+
+    background:var(--card-2);
+
+    border:1px solid var(--border);
+
+    border-radius:10px;
+
+    padding:8px;
+
+    cursor:pointer;
+
+    transition:.20s;
+
+    display:flex;
+
+    flex-direction:column;
+
+    justify-content:space-between;
+
+}
+
+/* ==========================================================
+   HOVER
+========================================================== */
+
+.calendar-day:hover{
+
+    border-color:var(--blue);
+
+    transform:translateY(-2px);
+
+}
+
+/* ==========================================================
+   DIA SELECIONADO
+========================================================== */
+
+.calendar-day.selected{
+
+    border:2px solid var(--blue);
+
+}
+
+/* ==========================================================
+   NÚMERO DO DIA
+========================================================== */
+
+.day-number{
+
+    font-size:15px;
+
+    font-weight:700;
+
+}
+
+/* ==========================================================
+   RESULTADO
+========================================================== */
+
+.day-result{
+
+    font-size:14px;
+
+    font-weight:600;
+
+}
+
+/* ==========================================================
+   QUANTIDADE DE TRADES
+========================================================== */
+
+.day-count{
+
+    font-size:11px;
+
+    color:var(--text-muted);
+
+}
+
+/* ==========================================================
+   DIA POSITIVO
+========================================================== */
+
+.calendar-day.positive{
+
+    border-left:5px solid var(--green);
+
+}
+
+.calendar-day.positive .day-result{
+
+    color:var(--green);
+
+}
+
+/* ==========================================================
+   DIA NEGATIVO
+========================================================== */
+
+.calendar-day.negative{
+
+    border-left:5px solid var(--red);
+
+}
+
+.calendar-day.negative .day-result{
+
+    color:var(--red);
+
+}
+
+/* ==========================================================
+   DIA OFF
+========================================================== */
+
+.calendar-day.off{
+
+    opacity:.55;
+
+}
+
+.calendar-day.off .day-result{
+
+    color:var(--text-muted);
+
+}
+
+/* ==========================================================
+   BOTÕES DO CALENDÁRIO
+========================================================== */
+
+#prevMonth,
+
+#nextMonth{
+
+    width:38px;
+
+    height:38px;
+
+    font-size:15px;
+
+}
+
+/* ==========================================================
+   MÊS
+========================================================== */
+
+#monthLabel{
+
+    font-size:22px;
+
+    font-weight:600;
+
+}

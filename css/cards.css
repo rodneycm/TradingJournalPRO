@@ -1,0 +1,186 @@
+/* ==========================================================
+   TRADING JOURNAL PRO
+   CARDS.CSS
+========================================================== */
+
+/* ==========================================================
+   KPI CARD
+========================================================== */
+
+.card{
+
+    background:var(--card);
+
+    border:1px solid var(--border);
+
+    border-radius:var(--radius);
+
+    padding:20px;
+
+    box-shadow:var(--shadow);
+
+    transition:.25s;
+
+    display:flex;
+
+    flex-direction:column;
+
+    gap:10px;
+
+}
+
+.card:hover{
+
+    transform:translateY(-3px);
+
+    border-color:var(--blue);
+
+}
+
+/* ==========================================================
+   TITULO
+========================================================== */
+
+.card span{
+
+    font-size:13px;
+
+    color:var(--text-muted);
+
+    text-transform:uppercase;
+
+    letter-spacing:.5px;
+
+}
+
+/* ==========================================================
+   VALOR
+========================================================== */
+
+.card strong{
+
+    font-size:28px;
+
+    font-weight:700;
+
+    color:var(--text);
+
+}
+
+/* ==========================================================
+   KPI POSITIVO
+========================================================== */
+
+.card.positive strong{
+
+    color:var(--green);
+
+}
+
+/* ==========================================================
+   KPI NEGATIVO
+========================================================== */
+
+.card.negative strong{
+
+    color:var(--red);
+
+}
+
+/* ==========================================================
+   KPI ALERTA
+========================================================== */
+
+.card.warning strong{
+
+    color:var(--yellow);
+
+}
+
+/* ==========================================================
+   PANEL
+========================================================== */
+
+.panel{
+
+    position:relative;
+
+    overflow:hidden;
+
+}
+
+/* Barra superior */
+
+.panel::before{
+
+    content:"";
+
+    position:absolute;
+
+    left:0;
+
+    top:0;
+
+    width:100%;
+
+    height:3px;
+
+    background:var(--blue);
+
+}
+
+/* ==========================================================
+   PANEL HEADER
+========================================================== */
+
+.panel-header h2{
+
+    font-size:20px;
+
+    font-weight:600;
+
+}
+
+.panel-header button{
+
+    width:36px;
+
+    height:36px;
+
+    border-radius:8px;
+
+    display:flex;
+
+    align-items:center;
+
+    justify-content:center;
+
+}
+
+/* ==========================================================
+   SUMMARY
+========================================================== */
+
+.summary-grid div{
+
+    transition:.2s;
+
+}
+
+.summary-grid div:hover{
+
+    border:1px solid var(--blue);
+
+}
+
+/* ==========================================================
+   RESUMO VALORES
+========================================================== */
+
+.summary-grid strong{
+
+    display:block;
+
+    margin-top:4px;
+
+}
