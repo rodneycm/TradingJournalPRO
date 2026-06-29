@@ -1,12 +1,30 @@
 /**
  * HISTORY MODULE
  *
- * Responsible for displaying
- * trading history records
+ * Main controller for trade history
  */
 
 
+
 import { Storage } from "../../storage.js";
+
+
+import { renderHistory } from "./render.js";
+
+
+import { filterTrades } from "./filters.js";
+
+
+import {
+    deleteTrade,
+    duplicateHistoryTrade,
+    editTrade
+
+} from "./actions.js";
+
+
+
+
 
 
 
@@ -14,76 +32,32 @@ export const History = {
 
 
 
+
+    /*
+        Current filters
+    */
+
+    filters: {},
+
+
+
+
+
+
+
+
     /**
-     * Render trade history
+     * Initialize history module
      */
-    render() {
+    init() {
 
 
 
-        const container =
-            document.querySelector(
-                "#history"
-            );
+        this.bindEvents();
 
 
 
-        if (!container) {
-
-
-            console.warn(
-                "History container not found"
-            );
-
-
-            return;
-
-
-        }
-
-
-
-        const trades =
-            this.getTrades();
-
-
-
-        container.innerHTML = "";
-
-
-
-        if (!trades.length) {
-
-
-
-            container.innerHTML = `
-
-                <div class="empty-history">
-
-                    Nenhuma operação registrada.
-
-                </div>
-
-            `;
-
-
-            return;
-
-
-        }
-
-
-
-        trades.forEach(trade => {
-
-
-
-            container.appendChild(
-                this.createTradeElement(trade)
-            );
-
-
-        });
+        this.render();
 
 
 
@@ -95,15 +69,53 @@ export const History = {
 
 
 
+
+
     /**
-     * Get stored trades
+     * Render history
+     */
+    render() {
+
+
+
+        const trades =
+            this.getTrades();
+
+
+
+
+        const filteredTrades =
+            filterTrades(
+                trades,
+                this.filters
+            );
+
+
+
+        renderHistory(
+            filteredTrades
+        );
+
+
+
+    },
+
+
+
+
+
+
+
+
+
+    /**
+     * Get trades from storage
      */
     getTrades() {
 
 
-        if (
-            Storage.get
-        ) {
+
+        if (Storage.get) {
 
 
             return Storage.get(
@@ -115,9 +127,13 @@ export const History = {
 
 
 
+
+
         if (
+
             Storage.data &&
             Storage.data.trades
+
         ) {
 
 
@@ -128,7 +144,9 @@ export const History = {
 
 
 
+
         return [];
+
 
 
     },
@@ -140,75 +158,151 @@ export const History = {
 
 
 
+
     /**
-     * Create history item
+     * Update filters
      */
-    createTradeElement(trade) {
+    setFilters(filters = {}) {
 
 
 
-        const item =
-            document.createElement(
-                "div"
-            );
+        this.filters = filters;
 
 
 
-        item.className =
-            "trade-history-item";
+        this.render();
 
 
 
-        item.innerHTML = `
-
-
-            <div class="trade-symbol">
-
-                ${trade.asset || "-"}
-
-            </div>
-
-
-            <div>
-
-                Tipo:
-                ${trade.type || "-"}
-
-            </div>
-
-
-            <div>
-
-                Entrada:
-                ${trade.entry || "-"}
-
-            </div>
-
-
-            <div>
-
-                Quantidade:
-                ${trade.quantity || "-"}
-
-            </div>
-
-
-            <div>
-
-                Data:
-                ${trade.date || "-"}
-
-            </div>
-
-
-        `;
+    },
 
 
 
-        return item;
+
+
+
+
+
+
+    /**
+     * Clear filters
+     */
+    clearFilters() {
+
+
+
+        this.filters = {};
+
+
+
+        this.render();
+
+
+
+    },
+
+
+
+
+
+
+
+
+
+    /**
+     * Module events
+     */
+    bindEvents() {
+
+
+
+        document.addEventListener(
+
+            "trade:added",
+
+            () => {
+
+                this.render();
+
+            }
+
+        );
+
+
+
+
+        document.addEventListener(
+
+            "trade:updated",
+
+            () => {
+
+                this.render();
+
+            }
+
+        );
+
+
+
+
+        document.addEventListener(
+
+            "trade:removed",
+
+            () => {
+
+                this.render();
+
+            }
+
+        );
+
+
+
+
+        document.addEventListener(
+
+            "trade:duplicated",
+
+            () => {
+
+                this.render();
+
+            }
+
+        );
+
+
+
+    },
+
+
+
+
+
+
+
+    /*
+        Actions exposed
+    */
+
+
+    actions: {
+
+
+        remove: deleteTrade,
+
+
+        duplicate: duplicateHistoryTrade,
+
+
+        edit: editTrade
 
 
     }
+
+
 
 
 
