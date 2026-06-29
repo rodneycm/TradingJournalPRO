@@ -178,11 +178,6 @@ export const App = {
 
 };
 
-
-
-
-
-
 document.addEventListener(
     "DOMContentLoaded",
     () => {
