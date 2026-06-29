@@ -4,8 +4,8 @@
    CRUD.JS
 ========================================================== */
 
-import { State } from "../../state.js";
-import { Storage } from "../../storage.js";
+import { State } from "../state.js";
+import { Storage } from "../storage.js";
 import { Events } from "../events/index.js";
 import { TradeValidation } from "./validation.js";
 

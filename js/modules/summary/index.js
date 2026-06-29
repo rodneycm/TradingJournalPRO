@@ -7,7 +7,7 @@
 import * as MonthlySummary from "./monthly.js";
 import * as YearlySummary from "./yearly.js";
 
-import { State } from "../../state.js";
+import { State } from "../state.js";
 
 /* ==========================================================
    SUMMARY

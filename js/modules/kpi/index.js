@@ -7,7 +7,7 @@
 import * as KPICards from "./cards.js";
 import * as KPIRender from "./render.js";
 
-import { State } from "../../state.js";
+import { State } from "../state.js";
 
 /* ==========================================================
    KPI

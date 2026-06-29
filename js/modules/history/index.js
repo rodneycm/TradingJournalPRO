@@ -4,7 +4,7 @@
    INDEX.JS
 ========================================================== */
 
-import { State } from "../../state.js";
+import { State } from "../state.js";
 
 import * as HistoryRender from "./render.js";
 import * as HistoryFilters from "./filters.js";

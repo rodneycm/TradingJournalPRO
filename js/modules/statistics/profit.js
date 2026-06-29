@@ -4,7 +4,7 @@
    PROFIT.JS
 ========================================================== */
 
-import { State } from "../../state.js";
+import { State } from "../state.js";
 import { StatisticsHelpers } from "./helpers.js";
 
 export const Profit = {

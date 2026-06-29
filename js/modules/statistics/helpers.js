@@ -4,7 +4,7 @@
    HELPERS.JS
 ========================================================== */
 
-import { State } from "../../state.js";
+import { State } from "../state.js";
 
 export const StatisticsHelpers = {
 

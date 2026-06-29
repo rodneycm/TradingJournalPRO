@@ -17,14 +17,14 @@
 import { Storage } from "./storage.js";
 import { Clock } from "./clock.js";
 
-import { Form } from "./modules/form/index.js";
-import { Calendar } from "./modules/calendar/index.js";
-import { History } from "./modules/history/index.js";
-import { KPI } from "./modules/kpi/index.js";
-import { Summary } from "./modules/summary/index.js";
-import { Charts } from "./modules/charts/index.js";
-import { Coach } from "./modules/coach/index.js";
-import { PropFirm } from "./modules/propFirm/index.js";
+import { Form } from "./form/index.js";
+import { Calendar } from "./calendar/index.js";
+import { History } from "./history/index.js";
+import { KPI } from "./kpi/index.js";
+import { Summary } from "./summary/index.js";
+import { Charts } from "./charts/index.js";
+import { Coach } from "./coach/index.js";
+import { PropFirm } from "./propFirm/index.js";
 
 /* ==========================================================
    APP

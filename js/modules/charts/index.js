@@ -8,7 +8,7 @@ import * as CapitalChart from "./capital.js";
 import * as PerformanceChart from "./performance.js";
 import * as Helpers from "./helpers.js";
 
-import { State } from "../../state.js";
+import { State } from "../state.js";
 
 /* ==========================================================
    CHARTS
