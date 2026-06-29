@@ -3,73 +3,134 @@
    APP.JS
 ========================================================== */
 
-import { History } from "./history.js";
+
 import { Storage } from "./storage.js";
 import { Clock } from "./clock.js";
-import { Form } from "./form.js";
 
-/*
-    Os módulos abaixo serão adicionados conforme forem sendo
-    desenvolvidos.
 
-    import { Calendar } from "./calendar.js";
-    import { History } from "./history.js";
-    import { KPI } from "./kpi.js";
-    import { Summary } from "./summary.js";
-    import { Charts } from "./charts.js";
-    import { Coach } from "./coach.js";
-    import { PropFirm } from "./propFirm.js";
-*/
+import { initFormEvents } from "./modules/form/events.js";
+
+
+import { History } from "./modules/history/index.js";
+
+
 
 /* ==========================================================
    APP
 ========================================================== */
 
+
 export const App = {
 
+
+
     /* ======================================================
-       INICIALIZAÇÃO
+       INITIALIZATION
     ====================================================== */
+
 
     init() {
 
+
         console.clear();
 
-        console.log("=======================================");
-        console.log(" Trading Journal Pro");
-        console.log(" Inicializando aplicação...");
-        console.log("=======================================");
 
-        // Carrega dados salvos
+
+        console.log(
+            "======================================="
+        );
+
+        console.log(
+            " Trading Journal Pro"
+        );
+
+        console.log(
+            " Inicializando aplicação..."
+        );
+
+        console.log(
+            "======================================="
+        );
+
+
+
+        /*
+            Load stored data
+        */
+
         Storage.load();
 
-        // Inicia relógio
+
+
+        /*
+            Start clock
+        */
+
         Clock.start();
 
-        // Inicializa formulário
-        Form.init();
 
-        // Registra eventos globais
+
+        /*
+            Initialize form module
+        */
+
+        initFormEvents();
+
+
+
+        /*
+            Global events
+        */
+
         this.events();
 
-        // Primeira atualização da interface
+
+
+        /*
+            First render
+        */
+
         this.refresh();
 
-        console.log("Aplicação iniciada com sucesso.");
+
+
+        console.log(
+            "Aplicação iniciada com sucesso."
+        );
+
 
     },
 
+
+
+
+
     /* ======================================================
-       REFRESH GERAL
+       GLOBAL REFRESH
     ====================================================== */
+
 
     refresh() {
 
-        History.render();
-        import { Calendar } from "./calendar.js";
+
+
         /*
-            Conforme os módulos forem ficando prontos,
-            eles serão chamados aqui.
+            History module
+        */
+
+
+        if (History && History.render) {
+
+
+            History.render();
+
+
+        }
+
+
+
+        /*
+            Future modules:
 
             Calendar.render();
             KPI.render();
@@ -77,50 +138,101 @@ export const App = {
             Charts.render();
             Coach.render();
             PropFirm.render();
+
         */
+
 
     },
 
+
+
+
+
+
+
     /* ======================================================
-       EVENTOS GLOBAIS
+       GLOBAL EVENTS
     ====================================================== */
+
 
     events() {
 
-        document.addEventListener("trade:added", () => {
 
-            this.refresh();
 
-        });
+        document.addEventListener(
+            "trade:added",
+            () => {
 
-        document.addEventListener("trade:updated", () => {
 
-            this.refresh();
+                this.refresh();
 
-        });
 
-        document.addEventListener("trade:removed", () => {
+            }
+        );
 
-            this.refresh();
 
-        });
 
-        document.addEventListener("trade:duplicated", () => {
+        document.addEventListener(
+            "trade:updated",
+            () => {
 
-            this.refresh();
 
-        });
+                this.refresh();
+
+
+            }
+        );
+
+
+
+        document.addEventListener(
+            "trade:removed",
+            () => {
+
+
+                this.refresh();
+
+
+            }
+        );
+
+
+
+        document.addEventListener(
+            "trade:duplicated",
+            () => {
+
+
+                this.refresh();
+
+
+            }
+        );
+
+
 
     }
 
+
+
 };
+
+
+
+
 
 /* ==========================================================
    START
 ========================================================== */
 
-document.addEventListener("DOMContentLoaded", () => {
 
-    App.init();
+document.addEventListener(
+    "DOMContentLoaded",
+    () => {
 
-});
+
+        App.init();
+
+
+    }
+);
