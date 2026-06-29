@@ -1,12 +1,30 @@
 /**
  * SUMMARY MODULE
  *
- * Responsible for generating
- * trading overview information
+ * Main controller for summary calculations
  */
 
 
+
 import { Storage } from "../../storage.js";
+
+
+import {
+    calculateMonthlySummary
+
+} from "./monthly.js";
+
+
+import {
+    calculateYearlySummary
+
+} from "./yearly.js";
+
+
+
+
+
+
 
 
 
@@ -14,8 +32,9 @@ export const Summary = {
 
 
 
+
     /**
-     * Render summary information
+     * Render summary
      */
     render() {
 
@@ -31,15 +50,21 @@ export const Summary = {
         if (!container) {
 
 
+
             console.warn(
                 "Summary container not found"
             );
 
 
+
             return;
 
 
+
         }
+
+
+
 
 
 
@@ -48,47 +73,128 @@ export const Summary = {
 
 
 
-        const summary =
-            this.calculate(trades);
+
+
+
+        const monthly =
+            calculateMonthlySummary(
+                trades
+            );
+
+
+
+
+
+
+        const yearly =
+            calculateYearlySummary(
+                trades
+            );
+
+
+
+
 
 
 
         container.innerHTML = `
 
 
-            <div class="summary-item">
 
-                Total trades:
-                ${summary.total}
+            <div class="summary-card">
+
+
+                <h3>
+
+                    Resumo mensal
+
+                </h3>
+
+
+                <p>
+
+                    Operações:
+                    ${monthly.totalTrades}
+
+                </p>
+
+
+                <p>
+
+                    Ganhos:
+                    ${monthly.wins}
+
+                </p>
+
+
+                <p>
+
+                    Perdas:
+                    ${monthly.losses}
+
+                </p>
+
+
+                <p>
+
+                    Resultado:
+                    ${monthly.profit}
+
+                </p>
+
+
 
             </div>
 
 
 
-            <div class="summary-item">
 
-                Wins:
-                ${summary.wins}
+
+            <div class="summary-card">
+
+
+                <h3>
+
+                    Resumo anual
+
+                </h3>
+
+
+                <p>
+
+                    Operações:
+                    ${yearly.totalTrades}
+
+                </p>
+
+
+                <p>
+
+                    Ganhos:
+                    ${yearly.wins}
+
+                </p>
+
+
+                <p>
+
+                    Perdas:
+                    ${yearly.losses}
+
+                </p>
+
+
+                <p>
+
+                    Resultado:
+                    ${yearly.profit}
+
+                </p>
+
+
 
             </div>
 
-
-
-            <div class="summary-item">
-
-                Losses:
-                ${summary.losses}
-
-            </div>
-
-
-
-            <div class="summary-item">
-
-                Result:
-                ${summary.result}
-
-            </div>
 
 
         `;
@@ -104,8 +210,9 @@ export const Summary = {
 
 
 
+
     /**
-     * Get trades from storage
+     * Get trades
      */
     getTrades() {
 
@@ -119,151 +226,42 @@ export const Summary = {
             ) || [];
 
 
+
         }
 
 
 
+
+
+
+
         if (
+
             Storage.data &&
             Storage.data.trades
+
         ) {
+
 
 
             return Storage.data.trades;
 
 
+
         }
+
+
+
+
 
 
 
         return [];
 
 
-    },
-
-
-
-
-
-
-
-
-
-
-    /**
-     * Calculate summary
-     */
-    calculate(trades) {
-
-
-
-        let wins = 0;
-
-        let losses = 0;
-
-        let result = 0;
-
-
-
-
-
-        trades.forEach(trade => {
-
-
-
-            const value =
-                this.calculateTradeResult(trade);
-
-
-
-            result += value;
-
-
-
-            if (value > 0) {
-
-
-                wins++;
-
-
-            }
-            else if (value < 0) {
-
-
-                losses++;
-
-
-            }
-
-
-
-        });
-
-
-
-
-
-        return {
-
-
-            total: trades.length,
-
-
-            wins,
-
-
-            losses,
-
-
-            result: Number(
-                result.toFixed(2)
-            )
-
-
-        };
-
-
-    },
-
-
-
-
-
-
-
-
-
-    /**
-     * Calculate single trade result
-     */
-    calculateTradeResult(trade) {
-
-
-
-        if (
-            !trade.entry ||
-            !trade.exit ||
-            !trade.quantity
-        ) {
-
-
-            return 0;
-
-
-        }
-
-
-
-        return (
-
-            (trade.exit - trade.entry)
-            *
-            trade.quantity
-
-        );
-
 
     }
+
 
 
 
