@@ -9,9 +9,17 @@
     - Não renderiza HTML.
     - Não salva dados.
     - Não faz cálculos.
+
+    Compatibilidade:
+    - API moderna (getters/setters)
+    - API legada (State.trades, State.currentMonth...)
 */
 
 export const State = {
+
+    /* ======================================================
+       ESTADO
+    ====================================================== */
 
     data: {
 
@@ -72,7 +80,7 @@ export const State = {
     },
 
     /* ======================================================
-       GETTERS
+       GETTERS (API NOVA)
     ====================================================== */
 
     get() {
@@ -112,7 +120,7 @@ export const State = {
     },
 
     /* ======================================================
-       SETTERS
+       SETTERS (API NOVA)
     ====================================================== */
 
     setTrades(trades) {
@@ -158,3 +166,55 @@ export const State = {
     }
 
 };
+
+/* ==========================================================
+   CAMADA DE COMPATIBILIDADE
+========================================================== */
+
+/*
+    Permite utilizar:
+
+    State.trades
+    State.currentMonth
+    State.currentYear
+    State.selectedDate
+    State.performanceView
+    State.historyFilter
+    State.editingTradeId
+    State.propFirm
+
+    sem quebrar a API moderna.
+*/
+
+[
+    "trades",
+    "selectedDate",
+    "currentMonth",
+    "currentYear",
+    "performanceView",
+    "historyFilter",
+    "editingTradeId",
+    "propFirm"
+].forEach(property => {
+
+    Object.defineProperty(State, property, {
+
+        get() {
+
+            return State.data[property];
+
+        },
+
+        set(value) {
+
+            State.data[property] = value;
+
+        },
+
+        enumerable: true,
+
+        configurable: false
+
+    });
+
+});
