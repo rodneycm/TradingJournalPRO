@@ -1,309 +1,75 @@
-/**
- * HISTORY MODULE
- *
- * Main controller for trade history
- */
+/* ==========================================================
+   TRADING JOURNAL PRO
+   HISTORY
+   INDEX.JS
+========================================================== */
 
+import { Trade } from "../trade/index.js";
 
+import { HistoryFilters } from "./filters.js";
+import { HistoryActions } from "./actions.js";
+import { HistoryRender } from "./render.js";
 
-import { Storage } from "../../storage.js";
-
-
-import { renderHistory } from "./render.js";
-
-
-import { filterTrades } from "./filters.js";
-
-
-import {
-    deleteTrade,
-    duplicateHistoryTrade,
-    editTrade
-
-} from "./actions.js";
-
-
-
-
-
-
+/* ==========================================================
+   HISTORY
+========================================================== */
 
 export const History = {
 
+    /* ======================================================
+       INICIALIZAÇÃO
+    ====================================================== */
 
-
-
-    /*
-        Current filters
-    */
-
-    filters: {},
-
-
-
-
-
-
-
-
-    /**
-     * Initialize history module
-     */
     init() {
 
-
-
-        this.bindEvents();
-
-
+        HistoryActions.init();
 
         this.render();
 
-
-
     },
 
+    /* ======================================================
+       RENDER
+    ====================================================== */
 
-
-
-
-
-
-
-
-    /**
-     * Render history
-     */
     render() {
 
+        const trades = Trade.getAll();
 
+        const filteredTrades = HistoryFilters.apply(trades);
 
-        const trades =
-            this.getTrades();
-
-
-
-
-        const filteredTrades =
-            filterTrades(
-                trades,
-                this.filters
-            );
-
-
-
-        renderHistory(
-            filteredTrades
-        );
-
-
+        HistoryRender.render(filteredTrades);
 
     },
 
+    /* ======================================================
+       REFRESH
+    ====================================================== */
 
-
-
-
-
-
-
-
-    /**
-     * Get trades from storage
-     */
-    getTrades() {
-
-
-
-        if (Storage.get) {
-
-
-            return Storage.get(
-                "trades"
-            ) || [];
-
-
-        }
-
-
-
-
-
-        if (
-
-            Storage.data &&
-            Storage.data.trades
-
-        ) {
-
-
-            return Storage.data.trades;
-
-
-        }
-
-
-
-
-        return [];
-
-
-
-    },
-
-
-
-
-
-
-
-
-
-    /**
-     * Update filters
-     */
-    setFilters(filters = {}) {
-
-
-
-        this.filters = filters;
-
-
+    refresh() {
 
         this.render();
 
-
-
     },
 
+    /* ======================================================
+       FILTROS
+    ====================================================== */
 
-
-
-
-
-
-
-
-    /**
-     * Clear filters
-     */
     clearFilters() {
 
-
-
-        this.filters = {};
-
-
+        HistoryFilters.clear();
 
         this.render();
 
-
-
     },
 
+    applyFilters(filters) {
 
+        HistoryFilters.set(filters);
 
-
-
-
-
-
-
-    /**
-     * Module events
-     */
-    bindEvents() {
-
-
-
-        document.addEventListener(
-
-            "trade:added",
-
-            () => {
-
-                this.render();
-
-            }
-
-        );
-
-
-
-
-        document.addEventListener(
-
-            "trade:updated",
-
-            () => {
-
-                this.render();
-
-            }
-
-        );
-
-
-
-
-        document.addEventListener(
-
-            "trade:removed",
-
-            () => {
-
-                this.render();
-
-            }
-
-        );
-
-
-
-
-        document.addEventListener(
-
-            "trade:duplicated",
-
-            () => {
-
-                this.render();
-
-            }
-
-        );
-
-
-
-    },
-
-
-
-
-
-
-
-    /*
-        Actions exposed
-    */
-
-
-    actions: {
-
-
-        remove: deleteTrade,
-
-
-        duplicate: duplicateHistoryTrade,
-
-
-        edit: editTrade
-
+        this.render();
 
     }
-
-
-
-
 
 };

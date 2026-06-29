@@ -1,155 +1,52 @@
-/**
- * CHARTS MODULE
- *
- * Main controller for charts data
- */
+/* ==========================================================
+   TRADING JOURNAL PRO
+   CHARTS
+   INDEX.JS
+========================================================== */
 
+import { Statistics } from "../statistics/index.js";
 
+import { CapitalChart } from "./capital.js";
+import { PerformanceChart } from "./performance.js";
 
-import { Storage } from "../../storage.js";
-
-
-
-import {
-    calculateCapitalChart
-
-} from "./capital.js";
-
-
-
-import {
-    calculatePerformanceChart
-
-} from "./performance.js";
-
-
-
-
-
-
-
-
+/* ==========================================================
+   CHARTS
+========================================================== */
 
 export const Charts = {
 
+    /* ======================================================
+       INICIALIZAÇÃO
+    ====================================================== */
 
+    init() {
 
-
-
-    /**
-     * Generate charts data
-     */
-    generate() {
-
-
-
-        const trades =
-            this.getTrades();
-
-
-
-
-
-
-        const capital =
-            calculateCapitalChart(
-                trades
-            );
-
-
-
-
-
-
-        const performance =
-            calculatePerformanceChart(
-                trades
-            );
-
-
-
-
-
-
-
-        return {
-
-
-
-            capital,
-
-
-
-            performance
-
-
-
-        };
-
-
+        this.render();
 
     },
 
+    /* ======================================================
+       RENDER
+    ====================================================== */
 
+    render() {
 
+        const dashboard = Statistics.getDashboard();
 
+        CapitalChart.render(dashboard);
 
+        PerformanceChart.render(dashboard);
 
+    },
 
+    /* ======================================================
+       REFRESH
+    ====================================================== */
 
+    refresh() {
 
-    /**
-     * Get trades
-     */
-    getTrades() {
-
-
-
-        if (Storage.get) {
-
-
-            return Storage.get(
-                "trades"
-            ) || [];
-
-
-
-        }
-
-
-
-
-
-
-        if (
-
-            Storage.data &&
-            Storage.data.trades
-
-        ) {
-
-
-            return Storage.data.trades;
-
-
-
-        }
-
-
-
-
-
-
-
-        return [];
-
-
+        this.render();
 
     }
-
-
-
-
-
 
 };

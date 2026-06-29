@@ -1,134 +1,52 @@
-/**
- * KPI MODULE
- *
- * Main controller for KPI dashboard
- */
+/* ==========================================================
+   TRADING JOURNAL PRO
+   KPI
+   INDEX.JS
+========================================================== */
 
+import { Statistics } from "../statistics/index.js";
 
+import { KPICards } from "./cards.js";
+import { KPIRender } from "./render.js";
 
-import { Storage } from "../../storage.js";
-
-
-
-import {
-    calculateKPI
-
-} from "./cards.js";
-
-
-
-import {
-    renderKPICards
-
-} from "./render.js";
-
-
-
-
-
-
-
-
+/* ==========================================================
+   KPI
+========================================================== */
 
 export const KPI = {
 
+    /* ======================================================
+       INICIALIZAÇÃO
+    ====================================================== */
 
+    init() {
 
-
-
-    /**
-     * Render KPI module
-     */
-    render() {
-
-
-
-        const trades =
-            this.getTrades();
-
-
-
-
-
-
-        const kpi =
-            calculateKPI(
-                trades
-            );
-
-
-
-
-
-
-        renderKPICards(
-            kpi
-        );
-
-
+        this.render();
 
     },
 
+    /* ======================================================
+       RENDER
+    ====================================================== */
 
+    render() {
 
+        const dashboard = Statistics.getDashboard();
 
+        KPICards.update(dashboard);
 
+        KPIRender.render(dashboard);
 
+    },
 
+    /* ======================================================
+       REFRESH
+    ====================================================== */
 
+    refresh() {
 
-    /**
-     * Get trades
-     */
-    getTrades() {
-
-
-
-        if (Storage.get) {
-
-
-            return Storage.get(
-                "trades"
-            ) || [];
-
-
-
-        }
-
-
-
-
-
-
-        if (
-
-            Storage.data &&
-            Storage.data.trades
-
-        ) {
-
-
-            return Storage.data.trades;
-
-
-
-        }
-
-
-
-
-
-
-
-        return [];
-
-
+        this.render();
 
     }
-
-
-
-
-
 
 };

@@ -1,269 +1,62 @@
-/**
- * SUMMARY MODULE
- *
- * Main controller for summary calculations
- */
+/* ==========================================================
+   TRADING JOURNAL PRO
+   SUMMARY
+   INDEX.JS
+========================================================== */
 
+import { Statistics } from "../statistics/index.js";
 
+import { MonthlySummary } from "./monthly.js";
+import { YearlySummary } from "./yearly.js";
 
-import { Storage } from "../../storage.js";
-
-
-import {
-    calculateMonthlySummary
-
-} from "./monthly.js";
-
-
-import {
-    calculateYearlySummary
-
-} from "./yearly.js";
-
-
-
-
-
-
-
-
+/* ==========================================================
+   SUMMARY
+========================================================== */
 
 export const Summary = {
 
+    /* ======================================================
+       INICIALIZAÇÃO
+    ====================================================== */
 
+    init() {
 
-
-    /**
-     * Render summary
-     */
-    render() {
-
-
-
-        const container =
-            document.querySelector(
-                "#summary"
-            );
-
-
-
-        if (!container) {
-
-
-
-            console.warn(
-                "Summary container not found"
-            );
-
-
-
-            return;
-
-
-
-        }
-
-
-
-
-
-
-        const trades =
-            this.getTrades();
-
-
-
-
-
-
-        const monthly =
-            calculateMonthlySummary(
-                trades
-            );
-
-
-
-
-
-
-        const yearly =
-            calculateYearlySummary(
-                trades
-            );
-
-
-
-
-
-
-
-        container.innerHTML = `
-
-
-
-            <div class="summary-card">
-
-
-                <h3>
-
-                    Resumo mensal
-
-                </h3>
-
-
-                <p>
-
-                    Operações:
-                    ${monthly.totalTrades}
-
-                </p>
-
-
-                <p>
-
-                    Ganhos:
-                    ${monthly.wins}
-
-                </p>
-
-
-                <p>
-
-                    Perdas:
-                    ${monthly.losses}
-
-                </p>
-
-
-                <p>
-
-                    Resultado:
-                    ${monthly.profit}
-
-                </p>
-
-
-
-            </div>
-
-
-
-
-
-            <div class="summary-card">
-
-
-                <h3>
-
-                    Resumo anual
-
-                </h3>
-
-
-                <p>
-
-                    Operações:
-                    ${yearly.totalTrades}
-
-                </p>
-
-
-                <p>
-
-                    Ganhos:
-                    ${yearly.wins}
-
-                </p>
-
-
-                <p>
-
-                    Perdas:
-                    ${yearly.losses}
-
-                </p>
-
-
-                <p>
-
-                    Resultado:
-                    ${yearly.profit}
-
-                </p>
-
-
-
-            </div>
-
-
-
-        `;
-
-
+        this.render();
 
     },
 
+    /* ======================================================
+       RENDER
+    ====================================================== */
 
+    render() {
 
+        const dashboard = Statistics.getDashboard();
 
+        MonthlySummary.render(dashboard);
 
+        YearlySummary.render(dashboard);
 
+    },
 
+    /* ======================================================
+       REFRESH
+    ====================================================== */
 
+    refresh() {
 
-    /**
-     * Get trades
-     */
-    getTrades() {
+        this.render();
 
+    },
 
+    /* ======================================================
+       DADOS
+    ====================================================== */
 
-        if (Storage.get) {
+    getDashboard() {
 
-
-            return Storage.get(
-                "trades"
-            ) || [];
-
-
-
-        }
-
-
-
-
-
-
-
-        if (
-
-            Storage.data &&
-            Storage.data.trades
-
-        ) {
-
-
-
-            return Storage.data.trades;
-
-
-
-        }
-
-
-
-
-
-
-
-        return [];
-
-
+        return Statistics.getDashboard();
 
     }
-
-
-
-
 
 };

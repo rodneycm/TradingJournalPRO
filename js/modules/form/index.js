@@ -1,204 +1,178 @@
-/**
- * FORM MODULE
- * Responsible for coordinating:
- * - form initialization
- * - data collection
- * - validation
- * - trade creation/update
- * - form reset
- */
+/* ==========================================================
+   TRADING JOURNAL PRO
+   FORM
+   INDEX.JS
+========================================================== */
 
 import { serializeForm } from "./serializer.js";
 import { validateForm } from "./validation.js";
-import { addTrade, updateTrade } from "../trade/index.js";
 
+import { Trade } from "../trade/index.js";
 
-let currentEditId = null;
+/* ==========================================================
+   FORM
+========================================================== */
 
+let editingTradeId = null;
 
-/**
- * Initialize form module
- */
-export function initForm() {
+export const Form = {
 
-    const form = document.querySelector("#tradeForm");
+    /* ======================================================
+       INICIALIZAÇÃO
+    ====================================================== */
 
-    if (!form) {
-        console.warn("Form element not found");
-        return;
-    }
+    init() {
 
+        const form = document.querySelector("#tradeForm");
 
-    form.addEventListener("submit", handleSubmit);
+        if (!form) {
 
+            console.warn("TradeForm não encontrado.");
 
-    const cancelButton = document.querySelector("#cancelEdit");
-
-    if (cancelButton) {
-
-        cancelButton.addEventListener("click", () => {
-
-            resetForm();
-
-        });
-
-    }
-
-}
-
-
-
-/**
- * Handle form submit
- */
-function handleSubmit(event) {
-
-    event.preventDefault();
-
-
-    const form = event.target;
-
-
-    const data = serializeForm(form);
-
-
-    const validation = validateForm(data);
-
-
-    if (!validation.valid) {
-
-        showValidationErrors(validation.errors);
-
-        return;
-
-    }
-
-
-    if (currentEditId) {
-
-
-        updateTrade(
-            currentEditId,
-            data
-        );
-
-
-    } else {
-
-
-        addTrade(data);
-
-
-    }
-
-
-    resetForm();
-
-}
-
-
-
-/**
- * Prepare form for editing
- */
-export function editForm(id, trade) {
-
-
-    currentEditId = id;
-
-
-    Object.keys(trade).forEach(key => {
-
-
-        const field = document.querySelector(
-            `[name="${key}"]`
-        );
-
-
-        if (field) {
-
-            field.value = trade[key];
+            return;
 
         }
 
+        form.addEventListener(
 
-    });
+            "submit",
 
+            this.handleSubmit.bind(this)
 
+        );
 
-    const button = document.querySelector(
-        "#submitButton"
-    );
+        const cancelButton = document.querySelector("#cancelEdit");
 
+        if (cancelButton) {
 
-    if (button) {
+            cancelButton.addEventListener(
 
-        button.textContent = "Atualizar";
+                "click",
+
+                () => this.reset()
+
+            );
+
+        }
+
+    },
+
+    /* ======================================================
+       SUBMIT
+    ====================================================== */
+
+    handleSubmit(event) {
+
+        event.preventDefault();
+
+        const form = event.target;
+
+        const trade = serializeForm(form);
+
+        const validation = validateForm(trade);
+
+        if (!validation.valid) {
+
+            console.warn(validation.errors);
+
+            return;
+
+        }
+
+        if (editingTradeId !== null) {
+
+            Trade.update(
+
+                editingTradeId,
+
+                trade
+
+            );
+
+        } else {
+
+            Trade.add(trade);
+
+        }
+
+        this.reset();
+
+    },
+
+    /* ======================================================
+       EDITAR
+    ====================================================== */
+
+    edit(id, trade) {
+
+        editingTradeId = id;
+
+        Object.keys(trade).forEach(key => {
+
+            const field = document.querySelector(
+
+                `[name="${key}"]`
+
+            );
+
+            if (field) {
+
+                field.value = trade[key];
+
+            }
+
+        });
+
+        const button = document.querySelector("#submitButton");
+
+        if (button) {
+
+            button.textContent = "Atualizar";
+
+        }
+
+    },
+
+    /* ======================================================
+       RESET
+    ====================================================== */
+
+    reset() {
+
+        const form = document.querySelector("#tradeForm");
+
+        if (form) {
+
+            form.reset();
+
+        }
+
+        editingTradeId = null;
+
+        const button = document.querySelector("#submitButton");
+
+        if (button) {
+
+            button.textContent = "Salvar";
+
+        }
+
+    },
+
+    /* ======================================================
+       ESTADO
+    ====================================================== */
+
+    isEditing() {
+
+        return editingTradeId !== null;
+
+    },
+
+    getEditingId() {
+
+        return editingTradeId;
 
     }
 
-
-}
-
-
-
-/**
- * Reset form state
- */
-export function resetForm() {
-
-
-    const form = document.querySelector("#tradeForm");
-
-
-    if (form) {
-
-        form.reset();
-
-    }
-
-
-    currentEditId = null;
-
-
-
-    const button = document.querySelector(
-        "#submitButton"
-    );
-
-
-    if (button) {
-
-        button.textContent = "Salvar";
-
-    }
-
-
-}
-
-
-
-/**
- * Display validation errors
- */
-function showValidationErrors(errors) {
-
-
-    console.warn(
-        "Form validation errors:",
-        errors
-    );
-
-
-}
-
-
-
-/**
- * Return current editing state
- */
-export function getEditingId() {
-
-    return currentEditId;
-
-}
+};
