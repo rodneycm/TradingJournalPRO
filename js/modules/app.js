@@ -11,9 +11,6 @@ import { Clock } from "./clock.js";
 import { initFormEvents } from "./modules/form/events.js";
 
 
-import { History } from "./modules/history/index.js";
-
-
 
 /* ==========================================================
    APP
@@ -22,11 +19,6 @@ import { History } from "./modules/history/index.js";
 
 export const App = {
 
-
-
-    /* ======================================================
-       INITIALIZATION
-    ====================================================== */
 
 
     init() {
@@ -54,41 +46,21 @@ export const App = {
 
 
 
-        /*
-            Load stored data
-        */
-
         Storage.load();
 
 
-
-        /*
-            Start clock
-        */
 
         Clock.start();
 
 
 
-        /*
-            Initialize form module
-        */
-
         initFormEvents();
 
 
 
-        /*
-            Global events
-        */
-
         this.events();
 
 
-
-        /*
-            First render
-        */
 
         this.refresh();
 
@@ -106,7 +78,7 @@ export const App = {
 
 
     /* ======================================================
-       GLOBAL REFRESH
+       REFRESH
     ====================================================== */
 
 
@@ -115,31 +87,29 @@ export const App = {
 
 
         /*
-            History module
-        */
-
-
-        if (History && History.render) {
-
+            Future modules:
 
             History.render();
 
-
-        }
-
-
-
-        /*
-            Future modules:
-
             Calendar.render();
+
             KPI.render();
+
             Summary.render();
+
             Charts.render();
+
             Coach.render();
+
             PropFirm.render();
 
         */
+
+
+
+        console.log(
+            "Interface atualizada."
+        );
 
 
     },
@@ -149,9 +119,8 @@ export const App = {
 
 
 
-
     /* ======================================================
-       GLOBAL EVENTS
+       EVENTS
     ====================================================== */
 
 
@@ -163,9 +132,7 @@ export const App = {
             "trade:added",
             () => {
 
-
                 this.refresh();
-
 
             }
         );
@@ -176,9 +143,7 @@ export const App = {
             "trade:updated",
             () => {
 
-
                 this.refresh();
-
 
             }
         );
@@ -189,9 +154,7 @@ export const App = {
             "trade:removed",
             () => {
 
-
                 this.refresh();
-
 
             }
         );
@@ -202,9 +165,7 @@ export const App = {
             "trade:duplicated",
             () => {
 
-
                 this.refresh();
-
 
             }
         );
@@ -221,18 +182,12 @@ export const App = {
 
 
 
-/* ==========================================================
-   START
-========================================================== */
-
 
 document.addEventListener(
     "DOMContentLoaded",
     () => {
 
-
         App.init();
-
 
     }
 );
