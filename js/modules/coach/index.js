@@ -8,6 +8,8 @@ import { generateAlerts } from "./alerts.js";
 import { generateInsights } from "./insights.js";
 import { calculateScore } from "./score.js";
 
+import { State } from "../state.js";
+
 /* ==========================================================
    COACH
 ========================================================== */
@@ -15,7 +17,31 @@ import { calculateScore } from "./score.js";
 export const Coach = {
 
     /* ======================================================
-       DASHBOARD DO COACH
+       INIT
+    ====================================================== */
+
+    init() {
+
+        this.refresh();
+
+    },
+
+    /* ======================================================
+       REFRESH
+    ====================================================== */
+
+    refresh() {
+
+        return this.getDashboard(
+
+            State.getTrades()
+
+        );
+
+    },
+
+    /* ======================================================
+       DASHBOARD
     ====================================================== */
 
     getDashboard(trades = []) {
