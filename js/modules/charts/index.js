@@ -35,7 +35,7 @@ export const Charts = {
         const trades = State.getTrades();
 
         const capital =
-            this.#execute(
+            this.execute(
                 CapitalChart,
                 [
                     "render",
@@ -47,7 +47,7 @@ export const Charts = {
             );
 
         const performance =
-            this.#execute(
+            this.execute(
                 PerformanceChart,
                 [
                     "render",

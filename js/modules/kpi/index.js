@@ -33,7 +33,7 @@ export const KPI = {
 
         const trades = State.getTrades();
 
-        this.#execute(
+        this.execute(
             KPICards,
             [
                 "render",
@@ -45,7 +45,7 @@ export const KPI = {
             trades
         );
 
-        this.#execute(
+        this.execute(
             KPIRender,
             [
                 "render",

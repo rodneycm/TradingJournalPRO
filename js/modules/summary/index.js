@@ -33,7 +33,7 @@ export const Summary = {
 
         const trades = State.getTrades();
 
-        this.#execute(
+        this.execute(
             MonthlySummary,
             [
                 "render",
@@ -45,7 +45,7 @@ export const Summary = {
             trades
         );
 
-        this.#execute(
+        this.execute(
             YearlySummary,
             [
                 "render",
