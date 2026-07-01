@@ -115,9 +115,9 @@ export const Profit = {
 
                 StatisticsHelpers.getTrades(),
 
-                State.currentMonth,
+                State.getCurrentMonth(),
 
-                State.currentYear
+                State.getCurrentYear()
 
             )
 

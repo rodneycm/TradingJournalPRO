@@ -23,13 +23,29 @@ export const Statistics = {
 
         return {
 
-            ...Profit.getMetrics(),
+            profit: {
 
-            ...Performance.getMetrics(),
+                total: Profit.getTotal(),
 
-            ...Drawdown.getMetrics(),
+                today: Profit.getToday(),
 
-            ...Health.getMetrics()
+                week: Profit.getWeek(),
+
+                month: Profit.getMonth(),
+
+                year: Profit.getYear(),
+
+                averageTrade: Profit.getAverageTrade(),
+
+                ...Profit.getMetrics()
+
+            },
+
+            performance: Performance.getMetrics(),
+
+            drawdown: Drawdown.getMetrics(),
+
+            health: Health.getMetrics()
 
         };
 
