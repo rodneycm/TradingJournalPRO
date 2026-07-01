@@ -73,7 +73,7 @@ export const Summary = {
        EXECUTOR
     ====================================================== */
 
-    #execute(module, methods, trades) {
+    execute(module, methods, trades) {
 
         for (const method of methods) {
 
